@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Food Kutir | Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-green: linear-gradient(135deg, #22c55e, #16a34a);
+            --solid-green: #22c55e;
+            --accent-lime: #84cc16;
+            --dark-green: #15803d;
+            --bg-color: #f0fdf4;
+            --text-dark: #14532d;
+            --text-light: #4d7c0f;
+            --card-bg: #ffffff;
+            --card-shadow: 0 8px 20px rgba(34, 197, 94, 0.15);
+            --glow-gradient: linear-gradient(to right, #22c55e, #84cc16, #fbbf24);
+            --item-bg: #dcfce7;
+            --hours-bg: #f0fdf4;
+            --cat-btn-bg: #dcfce7;
+            --cat-btn-hover: #bbf7d0;
+        }
+
+        [data-theme="dark"] {
+            --primary-green: linear-gradient(135deg, #16a34a, #15803d);
+            --solid-green: #22c55e;
+            --accent-lime: #84cc16;
+            --dark-green: #22c55e;
+            --bg-color: #0a0f0a;
+            --text-dark: #dcfce7;
+            --text-light: #86efac;
+            --card-bg: #1a2e1a;
+            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            --glow-gradient: linear-gradient(to right, #22c55e, #84cc16, #fbbf24);
+            --item-bg: #14532d;
+            --hours-bg: #14532d;
+            --cat-btn-bg: #14532d;
+            --cat-btn-hover: #166534;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 80px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* --- DARK MODE TOGGLE --- */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
+            border: 2px solid var(--solid-green);
+            border-radius: 50px;
+            padding: 8px 12px;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--primary-green);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1.5rem 3.5rem 1.5rem;
+            border-bottom-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+            margin-bottom: -25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .logo-container {
+            background-color: white;
+            width: 140px;
+            height: 140px;
+            border-radius: 25px;
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            opacity: 0.95;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .delivery-badge {
+            background-color: white;
+            color: var(--dark-green);
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(34, 197, 94, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- NAVIGATION --- */
+        .nav-wrapper {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 25px;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .helper-text {
+            text-align: center;
+            color: var(--dark-green);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .category-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .cat-btn {
+            flex: 1 1 45%;
+            background-color: var(--cat-btn-bg);
+            border: none;
+            color: var(--text-dark);
+            padding: 12px 15px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .cat-btn:hover {
+            background-color: var(--cat-btn-hover);
+            transform: translateY(-2px);
+        }
+
+        .cat-btn.active {
+            background-color: var(--solid-green);
+            color: white;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* --- MENU ITEMS --- */
+        .menu-section {
+            display: none;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 5px solid var(--accent-lime);
+        }
+
+        .menu-list {
+            list-style: none;
+            display: grid;
+            gap: 15px;
+        }
+
+        .menu-item-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: flex-start;
+            padding: 12px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .menu-item-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(34, 197, 94, 0.25);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .item-image {
+            width: 90px;
+            height: 90px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-right: 15px;
+            background-color: var(--item-bg);
+            flex-shrink: 0;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .item-desc {
+            font-size: 0.85rem;
+            color: #4d7c0f;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .item-price {
+            display: inline-block;
+            font-weight: 700;
+            color: var(--dark-green);
+            background-color: var(--item-bg);
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* --- INFO SECTIONS --- */
+        .info-section {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 30px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .info-title {
+            color: var(--solid-green);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hours-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        .hours-table tr {
+            background-color: var(--hours-bg);
+        }
+
+        .hours-table td {
+            padding: 12px 15px;
+            font-size: 0.95rem;
+        }
+        .hours-table td:first-child {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            font-weight: 600;
+            text-align: left;
+        }
+        .hours-table td:last-child {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            color: var(--dark-green);
+            font-weight: 700;
+            text-align: right;
+        }
+
+        /* --- GLOWING BUTTON EFFECT --- */
+        .btn-glow-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .btn-glow-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--glow-gradient);
+            border-radius: 50px;
+            filter: blur(15px);
+            opacity: 0.6;
+            transition: opacity 0.3s ease, filter 1s ease;
+        }
+
+        .btn-glow-wrapper:hover::before {
+            opacity: 1;
+            filter: blur(20px);
+        }
+
+        .call-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background: var(--dark-green);
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+            z-index: 1;
+        }
+
+        .call-btn:hover {
+            background: #166534;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(22, 101, 52, 0.4);
+        }
+
+        .call-btn svg {
+            margin-left: 8px;
+            margin-right: -4px;
+            width: 10px;
+            height: 10px;
+            stroke: white;
+            stroke-width: 2;
+            fill: none;
+            transition: all 0.2s ease;
+        }
+
+        .call-btn:hover svg path:first-child {
+            opacity: 1;
+        }
+
+        .call-btn:hover svg path:last-child {
+            transform: translateX(3px);
+        }
+
+        .call-btn svg path:first-child {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .call-btn svg path:last-child {
+            transition: transform 0.2s ease;
+        }
+
+        /* Responsive */
+        @media (min-width: 600px) {
+             .cat-btn { flex: 1 1 auto; }
+             .menu-list { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <header>
+        <div class="logo-container">
+            <img src="FoodKutir_FullLogo.png" alt="Food Kutir Logo"> 
+        </div>
+        <h1>Welcome to Food Kutir</h1>
+        <p class="description">
+            We use <strong>AMUL butter and cheese</strong> in all our products. Our food is <strong>100% PURE VEGETARIAN</strong> and prepared using mineral water.
+        </p>
+        <div class="delivery-badge"> Your order will be ready in 15 - 20 minutes</div>
+    </header>
+
+    <div class="container">
+
+        <div class="nav-wrapper">
+            <p class="helper-text">What would you like to eat?</p>
+            <div class="category-nav">
+                <button class="cat-btn" onclick="openMenu('sandwiches', this)">🥪 Sandwiches</button>
+                <button class="cat-btn" onclick="openMenu('fries', this)">🍟 Fries & Maggie</button>
+                <button class="cat-btn" onclick="openMenu('beverages', this)">☕ Beverages</button>
+                <button class="cat-btn" onclick="openMenu('special', this)">🍝 Special Items</button>
+            </div>
+        </div>
+
+        <div id="sandwiches" class="menu-section">
+            <h2 class="section-header">Sandwiches</h2>
+            <ul class="menu-list">
+                <li class="menu-item-card">
+                    <img src="VegetableSandwich.jpeg" alt="Veg Sandwich" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Vegetable Sandwich</h3>
+                        <p class="item-desc">Fresh vegetables with butter and green chutney in plain bread.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="VegetableCheeseSandwich.jpeg" alt="Cheese Veg Sandwich" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Cheese Vegetable Sandwich</h3>
+                        <p class="item-desc">Classic vegetable sandwich loaded with grated Amul cheese.</p>
+                        <span class="item-price">Rs. 80</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="PlainCheeseSandwich.jpeg" alt="Cheese Plain Sandwich" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Cheese Plain Sandwich</h3>
+                        <p class="item-desc">Plain or Grilled bread with Amul cheese.</p>
+                        <span class="item-price">Rs. 60</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="VegetableGrillSandwich.jpeg" alt="Grill Veg Sandwich" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Grill Vegetable Sandwich</h3>
+                        <p class="item-desc">Fresh Vegetables with butter and green chutney in grill bread.</p>
+                        <span class="item-price">Rs. 60</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="VegetableCheeseGrillSandwich.jpeg" alt="Grill Veg Cheese" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Grill Vegetable Cheese Sandwich </h3>
+                        <p class="item-desc">Fresh Vegetables with butter, green chutney and Amul Cheese in grill bread.</p>
+                        <span class="item-price">Rs. 90</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="BreadButter.png" alt="Bread Butter" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Bread Butter</h3>
+                        <p class="item-desc">Bread slices with fresh butter.</p>
+                        <span class="item-price">Rs. 30</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="fries" class="menu-section">
+            <h2 class="section-header">Fries & Maggie</h2>
+            <ul class="menu-list">
+                <li class="menu-item-card">
+                    <img src="SaltedFries.jpeg" alt="French Fries Salted" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Salted French Fries</h3>
+                        <p class="item-desc">Crispy fries with salt.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="PeriPeriFries.jpeg" alt="French Fries Peri Peri" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">French Fries Peri Peri</h3>
+                        <p class="item-desc">Crispy fries with spicy peri peri masala.</p>
+                        <span class="item-price">Rs. 60</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="PlainMaggie.jpeg" alt="Plain Maggie" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Plain Maggie</h3>
+                        <p class="item-desc">Simple maggie with basic masala.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="PlainCheeseMaggie.jpeg" alt="Cheese Plain Maggie" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Cheese Plain Maggie</h3>
+                        <p class="item-desc">Plain maggie with melted cheese.</p>
+                        <span class="item-price">Rs. 70</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="VegetableMaggie.jpeg" alt="Vegetable Maggie" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Vegetable Maggie</h3>
+                        <p class="item-desc">Plain Maggie cooked with fresh vegetables.</p>
+                        <span class="item-price">Rs. 70</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="VegetableCheeseMaggie.jpeg" alt="Cheese Veg Maggie" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Cheese Vegetable Maggie</h3>
+                        <p class="item-desc">Vegetable maggie with melted cheese.</p>
+                        <span class="item-price">Rs. 90</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="beverages" class="menu-section">
+            <h2 class="section-header">Beverages</h2>
+             <ul class="menu-list">
+                <li class="menu-item-card">
+                    <img src="Tea.jpeg" alt="Masala Tea" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Masala Tea</h3>
+                        <p class="item-desc">Hot tea with Indian spices.</p>
+                        <span class="item-price">Rs. 10</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="HotCoffee.jpeg" alt="Coffee" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Coffee</h3>
+                        <p class="item-desc">Hot coffee with rich taste.</p>
+                        <span class="item-price">Rs. 20</span>
+                    </div>
+                </li>
+                 <li class="menu-item-card">
+                    <img src="https://source.unsplash.com/80x80/?chocolate,milk" alt="Bournvita" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Bournvita</h3>
+                        <p class="item-desc">Milk with Bournvita powder.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                 <li class="menu-item-card">
+                    <img src="https://source.unsplash.com/80x80/?hotchocolate" alt="Hot Chocolate" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Hot Chocolate</h3>
+                        <p class="item-desc">Hot and creamy chocolate milk.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="ColdCoffee.png" alt="Cold Coffee" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Cold Coffee</h3>
+                        <p class="item-desc">Chilled coffee blended with milk.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="Mojito.png" alt="Mojito" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Mojito</h3>
+                        <p class="item-desc">Refreshing mint and lemon soda mocktail.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                 <li class="menu-item-card">
+                    <img src="WaterBottle.png" alt="Water Bottle" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Water Bottle</h3>
+                        <p class="item-desc">Mineral water (500ml).</p>
+                        <span class="item-price">Rs. 10</span>
+                    </div>
+                </li>
+                 <li class="menu-item-card">
+                    <img src="Sprite.png" alt="Cold Drinks" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Sprite</h3>
+                        <p class="item-desc">Chilled Sprite.</p>
+                        <span class="item-price">Rs. 20</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="special" class="menu-section">
+            <h2 class="section-header">Special Items</h2>
+             <ul class="menu-list">
+                <li class="menu-item-card">
+                    <img src="WhitePasta.jpeg" alt="White Pasta" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">White Pasta</h3>
+                        <p class="item-desc">Creamy white sauce pasta.</p>
+                        <span class="item-price">Rs. 80</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="RedPasta.jpeg" alt="Red Pasta" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Red Pasta</h3>
+                        <p class="item-desc">Pasta with tangy tomato-based sauce.</p>
+                        <span class="item-price">Rs. 80</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="https://source.unsplash.com/80x80/?nachos,cheese" alt="Cheesy Nachos" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Cheesy Nachos</h3>
+                        <p class="item-desc">Crispy Nachos loaded with veggies, cheese.</p>
+                        <span class="item-price">Rs. 80</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="info-section">
+            <h3 class="info-title">🕒 Opening Hours</h3>
+            <table class="hours-table">
+                <tr>
+                    <td>Monday - Friday</td>
+                    <td>7:00 PM - 12:00 AM</td>
+                </tr>
+                <tr>
+                    <td>Saturday - Sunday</td>
+                    <td>7:00 PM - 12:30 AM</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="info-section">
+            <h3 class="info-title">📍 Contact Us</h3>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--text-dark);">Mrunal Mistry</p>
+            <p style="color: #4d7c0f; margin-bottom: 20px;">Beside Anand Talkies, Sardar Market Road, Bilimora</p>
+            <div class="btn-glow-wrapper">
+                <a href="tel:+919974547009" class="call-btn">
+                    <span style="margin-right:10px">📞</span> Call 99745 47009
+                    <svg viewBox="0 0 10 10" height="10" width="10">
+                        <path d="M0 5h7"></path>
+                        <path d="M1 1l4 4-4 4"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Dark mode toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const icon = document.getElementById('theme-icon');
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Load saved theme on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const icon = document.getElementById('theme-icon');
+            
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            icon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+        });
+
+        function openMenu(categoryName, btnElement) {
+            var sections = document.getElementsByClassName("menu-section");
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = "none";
+            }
+            var buttons = document.getElementsByClassName("cat-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+            document.getElementById(categoryName).style.display = "block";
+            btnElement.classList.add("active");
+            
+            setTimeout(function() {
+                document.getElementById(categoryName).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    </script>
+
+</body>
+</html>
