@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -85,6 +86,36 @@
             transform: scale(0.95);
         }
 
+        /* --- LANGUAGE TOGGLE --- */
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 80px;
+            z-index: 1000;
+            background: var(--card-bg);
+            border: 2px solid var(--solid-green);
+            border-radius: 50px;
+            padding: 8px 14px;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+        }
+
+        .lang-toggle:active {
+            transform: scale(0.95);
+        }
+
         .container {
             max-width: 700px;
             margin: 0 auto;
@@ -108,13 +139,20 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             animation: shimmer 3s infinite;
         }
 
         @keyframes shimmer {
-            0%, 100% { transform: translateX(-100%); }
-            50% { transform: translateX(100%); }
+
+            0%,
+            100% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(100%);
+            }
         }
 
         .logo-container {
@@ -142,7 +180,7 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             position: relative;
             z-index: 1;
         }
@@ -231,8 +269,15 @@
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .section-header {
@@ -339,12 +384,14 @@
             padding: 12px 15px;
             font-size: 0.95rem;
         }
+
         .hours-table td:first-child {
             border-top-left-radius: 10px;
             border-bottom-left-radius: 10px;
             font-weight: 600;
             text-align: left;
         }
+
         .hours-table td:last-child {
             border-top-right-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -432,26 +479,158 @@
 
         /* Responsive */
         @media (min-width: 600px) {
-             .cat-btn { flex: 1 1 auto; }
-             .menu-list { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+            .cat-btn {
+                flex: 1 1 auto;
+            }
+
+            .menu-list {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+        }
+
+        /* --- LANGUAGE MODAL --- */
+        .lang-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lang-modal.hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .lang-modal-content {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 0.3s ease;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lang-modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .lang-modal-subtitle {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .lang-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .lang-btn {
+            padding: 16px 30px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .lang-btn-en {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .lang-btn-gu {
+            background: var(--item-bg);
+            color: var(--text-dark);
+            border: 2px solid var(--solid-green);
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+        }
+
+        .lang-btn:active {
+            transform: scale(0.98);
         }
     </style>
 </head>
+
 <body>
+
+    <!-- Language Selection Modal -->
+    <div id="langModal" class="lang-modal">
+        <div class="lang-modal-content">
+            <h2 class="lang-modal-title">🍽️ Food Kutir</h2>
+            <p class="lang-modal-subtitle">Select your language / ભાષા પસંદ કરો</p>
+            <div class="lang-buttons">
+                <button class="lang-btn lang-btn-en" onclick="selectLanguage('en')">
+                    English
+                </button>
+                <button class="lang-btn lang-btn-gu" onclick="selectLanguage('gu')">
+                    ગુજરાતી
+                </button>
+            </div>
+        </div>
+    </div>
 
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
         <span id="theme-icon">🌙</span>
     </button>
 
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Switch language">
+        <span id="lang-icon">🌐</span>
+        <span id="lang-text">EN</span>
+    </button>
+
     <header>
         <div class="logo-container">
-            <img src="FoodKutir_FullLogo.png" alt="Food Kutir Logo"> 
+            <img src="FoodKutir_FullLogo.png" alt="Food Kutir Logo">
         </div>
-        <h1>Welcome to</h1>
-        <h1> Food Kutir <h1>
+        <h1>Welcome to Food Kutir</h1>
         <p class="description">
-            We use <strong>AMUL butter and cheese</strong> in all our products. Our food is <strong> PURE VEGETARIAN</strong> and prepared using mineral water.
+            We use <strong>AMUL butter and cheese</strong> in all our products. Our food is <strong>100% PURE
+                VEGETARIAN</strong> and prepared using mineral water.
         </p>
+        <p class="description" style="margin-top: 10px; font-weight: 600;">🎉 We take party orders for corporate
+            catering, birthday parties, and get-togethers!</p>
         <div class="delivery-badge"> Your order will be ready in 15 - 20 minutes</div>
     </header>
 
@@ -464,6 +643,8 @@
                 <button class="cat-btn" onclick="openMenu('fries', this)">🍟 Fries & Maggie</button>
                 <button class="cat-btn" onclick="openMenu('beverages', this)">☕ Beverages</button>
                 <button class="cat-btn" onclick="openMenu('special', this)">🍝 Special Items</button>
+                <button class="cat-btn" onclick="openMenu('combos', this)">🎁 Combos</button>
+                <button class="cat-btn" onclick="openMenu('preorder', this)">📋 Pre Order</button>
             </div>
         </div>
 
@@ -506,7 +687,8 @@
                     <img src="VegetableCheeseGrillSandwich.jpeg" alt="Grill Veg Cheese" class="item-image">
                     <div class="item-details">
                         <h3 class="item-name">Grill Vegetable Cheese Sandwich </h3>
-                        <p class="item-desc">Fresh Vegetables with butter, green chutney and Amul Cheese in grill bread.</p>
+                        <p class="item-desc">Fresh Vegetables with butter, green chutney and Amul Cheese in grill bread.
+                        </p>
                         <span class="item-price">Rs. 90</span>
                     </div>
                 </li>
@@ -577,13 +759,13 @@
 
         <div id="beverages" class="menu-section">
             <h2 class="section-header">Beverages</h2>
-             <ul class="menu-list">
+            <ul class="menu-list">
                 <li class="menu-item-card">
                     <img src="Tea.jpeg" alt="Masala Tea" class="item-image">
                     <div class="item-details">
                         <h3 class="item-name">Masala Tea</h3>
                         <p class="item-desc">Hot tea with Indian spices.</p>
-                        <span class="item-price">Rs. 20</span>
+                        <span class="item-price">Rs. 10</span>
                     </div>
                 </li>
                 <li class="menu-item-card">
@@ -591,10 +773,10 @@
                     <div class="item-details">
                         <h3 class="item-name">Coffee</h3>
                         <p class="item-desc">Hot coffee with rich taste.</p>
-                        <span class="item-price">Rs. 30</span>
+                        <span class="item-price">Rs. 20</span>
                     </div>
                 </li>
-                 <li class="menu-item-card">
+                <li class="menu-item-card">
                     <img src="https://source.unsplash.com/80x80/?chocolate,milk" alt="Bournvita" class="item-image">
                     <div class="item-details">
                         <h3 class="item-name">Bournvita</h3>
@@ -602,7 +784,7 @@
                         <span class="item-price">Rs. 50</span>
                     </div>
                 </li>
-                 <li class="menu-item-card">
+                <li class="menu-item-card">
                     <img src="https://source.unsplash.com/80x80/?hotchocolate" alt="Hot Chocolate" class="item-image">
                     <div class="item-details">
                         <h3 class="item-name">Hot Chocolate</h3>
@@ -626,7 +808,7 @@
                         <span class="item-price">Rs. 50</span>
                     </div>
                 </li>
-                 <li class="menu-item-card">
+                <li class="menu-item-card">
                     <img src="WaterBottle.png" alt="Water Bottle" class="item-image">
                     <div class="item-details">
                         <h3 class="item-name">Water Bottle</h3>
@@ -634,7 +816,7 @@
                         <span class="item-price">Rs. 10</span>
                     </div>
                 </li>
-                 <li class="menu-item-card">
+                <li class="menu-item-card">
                     <img src="Sprite.png" alt="Cold Drinks" class="item-image">
                     <div class="item-details">
                         <h3 class="item-name">Sprite</h3>
@@ -647,19 +829,19 @@
 
         <div id="special" class="menu-section">
             <h2 class="section-header">Special Items</h2>
-             <ul class="menu-list">
+            <ul class="menu-list">
                 <li class="menu-item-card">
-                    <img src="WhitePasta.jpeg" alt="White Pasta" class="item-image">
+                    <img src="WhitePasta.jpeg" alt="White Sauce Pasta" class="item-image">
                     <div class="item-details">
-                        <h3 class="item-name">White sauce Pasta</h3>
+                        <h3 class="item-name">White Sauce Pasta</h3>
                         <p class="item-desc">Creamy white sauce pasta.</p>
                         <span class="item-price">Rs. 80</span>
                     </div>
                 </li>
                 <li class="menu-item-card">
-                    <img src="RedPasta.jpeg" alt="Red Pasta" class="item-image">
+                    <img src="RedPasta.jpeg" alt="Red Sauce Pasta" class="item-image">
                     <div class="item-details">
-                        <h3 class="item-name">Red sauce Pasta</h3>
+                        <h3 class="item-name">Red Sauce Pasta</h3>
                         <p class="item-desc">Pasta with tangy tomato-based sauce.</p>
                         <span class="item-price">Rs. 80</span>
                     </div>
@@ -668,8 +850,66 @@
                     <img src="https://source.unsplash.com/80x80/?nachos,cheese" alt="Cheesy Nachos" class="item-image">
                     <div class="item-details">
                         <h3 class="item-name">Cheesy Nachos</h3>
-                        <p class="item-desc">Crispy Nachos loaded with veggies & cheese.</p>
+                        <p class="item-desc">Crispy Nachos loaded with veggies, cheese.</p>
                         <span class="item-price">Rs. 80</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="combos" class="menu-section">
+            <h2 class="section-header">Combos</h2>
+            <ul class="menu-list">
+                <li class="menu-item-card">
+                    <div class="item-details">
+                        <h3 class="item-name">Combo 1</h3>
+                        <p class="item-desc">White Sauce Pasta + Salted French Fries + Mojito</p>
+                        <span class="item-price">Rs. 150</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <div class="item-details">
+                        <h3 class="item-name">Combo 2</h3>
+                        <p class="item-desc">Plain Maggie + Cheesy Nachos + Cold Coffee</p>
+                        <span class="item-price">Rs. 150</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <div class="item-details">
+                        <h3 class="item-name">Combo 3</h3>
+                        <p class="item-desc">Grill Vegetable Sandwich + Red Sauce Pasta + Sprite</p>
+                        <span class="item-price">Rs. 150</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <div class="item-details">
+                        <h3 class="item-name">Combo 4</h3>
+                        <p class="item-desc">Cheese Grill Vegetable Sandwich + Cheese Vegetable Maggie + Hot Chocolate
+                        </p>
+                        <span class="item-price">Rs. 200</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="preorder" class="menu-section">
+            <h2 class="section-header">Pre Order Items</h2>
+            <p
+                style="color: var(--text-light); margin-bottom: 20px; padding: 15px; background: var(--item-bg); border-radius: 12px; text-align: center;">
+                ⏰ Please place your order one day in advance</p>
+            <ul class="menu-list">
+                <li class="menu-item-card">
+                    <div class="item-details">
+                        <h3 class="item-name">Bhagat Muthiya Sabji</h3>
+                        <p class="item-desc">Traditional Gujarati muthiya with sabji, freshly prepared on order.</p>
+                        <span class="item-price">Rs. 280/kg</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <div class="item-details">
+                        <h3 class="item-name">Chokha na Puda</h3>
+                        <p class="item-desc">Crispy rice flour puda, a traditional delicacy made fresh on order.</p>
+                        <span class="item-price">Rs. 20/piece</span>
                     </div>
                 </li>
             </ul>
@@ -691,11 +931,20 @@
 
         <div class="info-section">
             <h3 class="info-title">📍 Contact Us</h3>
-            <p style="font-size: 1.2rem; font-weight: bold; color: var(--text-dark);">Mrunal Mistry</p>
-            <p style="color: #4d7c0f; margin-bottom: 20px;">Beside Anand Cinema, Sardar Market Road, Bilimora</p>
+            <p class="contact-address" style="color: #4d7c0f; margin-bottom: 20px;">Beside Anand Talkies, Sardar Market
+                Road, Bilimora</p>
+            <div class="btn-glow-wrapper" style="margin-bottom: 15px;">
+                <a href="tel:+919974547009" class="call-btn call-btn-1">
+                    <span style="margin-right:10px">📞</span> 99745 47009 (Mrunal Mistry)
+                    <svg viewBox="0 0 10 10" height="10" width="10">
+                        <path d="M0 5h7"></path>
+                        <path d="M1 1l4 4-4 4"></path>
+                    </svg>
+                </a>
+            </div>
             <div class="btn-glow-wrapper">
-                <a href="tel:+919974547009" class="call-btn">
-                    <span style="margin-right:10px">📞</span> Call 99745 47009
+                <a href="tel:+916826983834" class="call-btn call-btn-2">
+                    <span style="margin-right:10px">📞</span> 68269 83834 (Mita Mistry)
                     <svg viewBox="0 0 10 10" height="10" width="10">
                         <path d="M0 5h7"></path>
                         <path d="M1 1l4 4-4 4"></path>
@@ -707,26 +956,398 @@
     </div>
 
     <script>
+        // Translations object
+        const translations = {
+            en: {
+                // Header
+                welcome: "Welcome to Food Kutir",
+                description: 'We use <strong>AMUL butter and cheese</strong> in all our products. Our food is <strong>100% PURE VEGETARIAN</strong> and prepared using mineral water.',
+                partyOrders: "🎉 We take party orders for corporate catering, birthday parties, and get-togethers!",
+                deliveryBadge: "Your order will be ready in 15 - 20 minutes",
+                helperText: "What would you like to eat?",
+
+                // Category buttons
+                catSandwiches: "🥪 Sandwiches",
+                catFries: "🍟 Fries & Maggie",
+                catBeverages: "☕ Beverages",
+                catSpecial: "🍝 Special Items",
+                catCombos: "🎁 Combos",
+
+                // Section headers
+                sectionSandwiches: "Sandwiches",
+                sectionFries: "Fries & Maggie",
+                sectionBeverages: "Beverages",
+                sectionSpecial: "Special Items",
+                sectionCombos: "Combos",
+
+                // Sandwiches
+                vegSandwich: "Vegetable Sandwich",
+                vegSandwichDesc: "Fresh vegetables with butter and green chutney in plain bread.",
+                cheeseVegSandwich: "Cheese Vegetable Sandwich",
+                cheeseVegSandwichDesc: "Classic vegetable sandwich loaded with grated Amul cheese.",
+                cheesePlainSandwich: "Cheese Plain Sandwich",
+                cheesePlainSandwichDesc: "Plain or Grilled bread with Amul cheese.",
+                grillVegSandwich: "Grill Vegetable Sandwich",
+                grillVegSandwichDesc: "Fresh Vegetables with butter and green chutney in grill bread.",
+                grillVegCheeseSandwich: "Grill Vegetable Cheese Sandwich",
+                grillVegCheeseSandwichDesc: "Fresh Vegetables with butter, green chutney and Amul Cheese in grill bread.",
+                breadButter: "Bread Butter",
+                breadButterDesc: "Bread slices with fresh butter.",
+
+                // Fries & Maggie
+                saltedFries: "Salted French Fries",
+                saltedFriesDesc: "Crispy fries with salt.",
+                periPeriFries: "French Fries Peri Peri",
+                periPeriFriesDesc: "Crispy fries with spicy peri peri masala.",
+                plainMaggie: "Plain Maggie",
+                plainMaggieDesc: "Simple maggie with basic masala.",
+                cheesePlainMaggie: "Cheese Plain Maggie",
+                cheesePlainMaggieDesc: "Plain maggie with melted cheese.",
+                vegMaggie: "Vegetable Maggie",
+                vegMaggieDesc: "Plain Maggie cooked with fresh vegetables.",
+                cheeseVegMaggie: "Cheese Vegetable Maggie",
+                cheeseVegMaggieDesc: "Vegetable maggie with melted cheese.",
+
+                // Beverages
+                masalaTea: "Masala Tea",
+                masalaTeaDesc: "Hot tea with Indian spices.",
+                coffee: "Coffee",
+                coffeeDesc: "Hot coffee with rich taste.",
+                bournvita: "Bournvita",
+                bournvitaDesc: "Milk with Bournvita powder.",
+                hotChocolate: "Hot Chocolate",
+                hotChocolateDesc: "Hot and creamy chocolate milk.",
+                coldCoffee: "Cold Coffee",
+                coldCoffeeDesc: "Chilled coffee blended with milk.",
+                mojito: "Mojito",
+                mojitoDesc: "Refreshing mint and lemon soda mocktail.",
+                waterBottle: "Water Bottle",
+                waterBottleDesc: "Mineral water (500ml).",
+                sprite: "Sprite",
+                spriteDesc: "Chilled Sprite.",
+
+                // Special Items
+                whitePasta: "White Sauce Pasta",
+                whitePastaDesc: "Creamy white sauce pasta.",
+                redPasta: "Red Sauce Pasta",
+                redPastaDesc: "Pasta with tangy tomato-based sauce.",
+                cheesyNachos: "Cheesy Nachos",
+                cheesyNachosDesc: "Crispy Nachos loaded with veggies, cheese.",
+
+                // Combos
+                combo1: "Combo 1",
+                combo1Desc: "White Sauce Pasta + Salted French Fries + Mojito",
+                combo2: "Combo 2",
+                combo2Desc: "Plain Maggie + Cheesy Nachos + Cold Coffee",
+                combo3: "Combo 3",
+                combo3Desc: "Grill Vegetable Sandwich + Red Sauce Pasta + Sprite",
+                combo4: "Combo 4",
+                combo4Desc: "Cheese Grill Vegetable Sandwich + Cheese Vegetable Maggie + Hot Chocolate",
+
+                // Pre Order Items
+                catPreorder: "📋 Pre Order",
+                sectionPreorder: "Pre Order Items",
+                preorderNote: "⏰ Please place your order one day in advance",
+                bhagatMuthiya: "Bhagat Muthiya Sabji",
+                bhagatMuthiyaDesc: "Traditional Gujarati muthiya with sabji, freshly prepared on order.",
+                chokhaPuda: "Chokha na Puda",
+                chokhaPudaDesc: "Crispy rice flour puda, a traditional delicacy made fresh on order.",
+
+                // Info sections
+                openingHours: "🕒 Opening Hours",
+                monFri: "Monday - Friday",
+                satSun: "Saturday - Sunday",
+                contactUs: "📍 Contact Us",
+                address: "Beside Anand Talkies, Sardar Market Road, Bilimora",
+                callBtn1: "99745 47009 (Mrunal Mistry)",
+                callBtn2: "68269 83834 (Mita Mistry)"
+            },
+            gu: {
+                // Header
+                welcome: "ફૂડ કુટીરમાં આપનું સ્વાગત છે",
+                description: 'અમે અમારા બધા ઉત્પાદનોમાં <strong>અમૂલ માખણ અને ચીઝ</strong> વાપરીએ છીએ. અમારો ખોરાક <strong>100% શુદ્ધ શાકાહારી</strong> છે અને મિનરલ વોટરથી બનાવવામાં આવે છે.',
+                partyOrders: "🎉 અમે કોર્પોરેટ કેટરિંગ, બર્થડે પાર્ટી અને ગેટ-ટુગેધર માટે પાર્ટી ઓર્ડર લઈએ છીએ!",
+                deliveryBadge: "તમારો ઓર્ડર 15 - 20 મિનિટમાં તૈયાર થઈ જશે",
+                helperText: "તમે શું ખાવા માંગો છો?",
+
+                // Category buttons
+                catSandwiches: "🥪 સેન્ડવિચ",
+                catFries: "🍟 ફ્રાઈઝ અને મેગી",
+                catBeverages: "☕ પીણાં",
+                catSpecial: "🍝 સ્પેશિયલ આઇટમ્સ",
+                catCombos: "🎁 કોમ્બો",
+
+                // Section headers
+                sectionSandwiches: "સેન્ડવિચ",
+                sectionFries: "ફ્રાઈઝ અને મેગી",
+                sectionBeverages: "પીણાં",
+                sectionSpecial: "સ્પેશિયલ આઇટમ્સ",
+                sectionCombos: "કોમ્બો",
+
+                // Sandwiches
+                vegSandwich: "વેજિટેબલ સેન્ડવિચ",
+                vegSandwichDesc: "પ્લેન બ્રેડમાં માખણ અને લીલી ચટણી સાથે તાજા શાકભાજી.",
+                cheeseVegSandwich: "ચીઝ વેજિટેબલ સેન્ડવિચ",
+                cheeseVegSandwichDesc: "અમૂલ ચીઝથી ભરપૂર ક્લાસિક વેજિટેબલ સેન્ડવિચ.",
+                cheesePlainSandwich: "ચીઝ પ્લેન સેન્ડવિચ",
+                cheesePlainSandwichDesc: "અમૂલ ચીઝ સાથે પ્લેન અથવા ગ્રિલ્ડ બ્રેડ.",
+                grillVegSandwich: "ગ્રિલ વેજિટેબલ સેન્ડવિચ",
+                grillVegSandwichDesc: "ગ્રિલ બ્રેડમાં માખણ અને લીલી ચટણી સાથે તાજા શાકભાજી.",
+                grillVegCheeseSandwich: "ગ્રિલ વેજિટેબલ ચીઝ સેન્ડવિચ",
+                grillVegCheeseSandwichDesc: "ગ્રિલ બ્રેડમાં માખણ, લીલી ચટણી અને અમૂલ ચીઝ સાથે તાજા શાકભાજી.",
+                breadButter: "બ્રેડ બટર",
+                breadButterDesc: "તાજા માખણ સાથે બ્રેડ સ્લાઈસ.",
+
+                // Fries & Maggie
+                saltedFries: "મીઠાવાળી ફ્રેન્ચ ફ્રાઈઝ",
+                saltedFriesDesc: "મીઠા સાથે ક્રિસ્પી ફ્રાઈઝ.",
+                periPeriFries: "પેરી પેરી ફ્રેન્ચ ફ્રાઈઝ",
+                periPeriFriesDesc: "મસાલેદાર પેરી પેરી મસાલા સાથે ક્રિસ્પી ફ્રાઈઝ.",
+                plainMaggie: "પ્લેન મેગી",
+                plainMaggieDesc: "બેસિક મસાલા સાથે સાદી મેગી.",
+                cheesePlainMaggie: "ચીઝ પ્લેન મેગી",
+                cheesePlainMaggieDesc: "ઓગળેલી ચીઝ સાથે પ્લેન મેગી.",
+                vegMaggie: "વેજિટેબલ મેગી",
+                vegMaggieDesc: "તાજા શાકભાજી સાથે રાંધેલી પ્લેન મેગી.",
+                cheeseVegMaggie: "ચીઝ વેજિટેબલ મેગી",
+                cheeseVegMaggieDesc: "ઓગળેલી ચીઝ સાથે વેજિટેબલ મેગી.",
+
+                // Beverages
+                masalaTea: "મસાલા ચા",
+                masalaTeaDesc: "ભારતીય મસાલા સાથે ગરમ ચા.",
+                coffee: "કોફી",
+                coffeeDesc: "સમૃદ્ધ સ્વાદ સાથે ગરમ કોફી.",
+                bournvita: "બોર્નવિટા",
+                bournvitaDesc: "બોર્નવિટા પાવડર સાથે દૂધ.",
+                hotChocolate: "હોટ ચોકલેટ",
+                hotChocolateDesc: "ગરમ અને ક્રીમી ચોકલેટ દૂધ.",
+                coldCoffee: "કોલ્ડ કોફી",
+                coldCoffeeDesc: "દૂધ સાથે મિશ્રિત ઠંડી કોફી.",
+                mojito: "મોજિટો",
+                mojitoDesc: "તાજગીભર્યું ફુદીનો અને લીંબુ સોડા મોકટેલ.",
+                waterBottle: "પાણીની બોટલ",
+                waterBottleDesc: "મિનરલ વોટર (500ml).",
+                sprite: "સ્પ્રાઈટ",
+                spriteDesc: "ઠંડી સ્પ્રાઈટ.",
+
+                // Special Items
+                whitePasta: "વ્હાઇટ સોસ પાસ્તા",
+                whitePastaDesc: "ક્રીમી વ્હાઇટ સોસ પાસ્તા.",
+                redPasta: "રેડ સોસ પાસ્તા",
+                redPastaDesc: "ટેન્ગી ટોમેટો-બેઝ્ડ સોસ સાથે પાસ્તા.",
+                cheesyNachos: "ચીઝી નાચોસ",
+                cheesyNachosDesc: "શાકભાજી અને ચીઝથી ભરપૂર ક્રિસ્પી નાચોસ.",
+
+                // Combos
+                combo1: "કોમ્બો 1",
+                combo1Desc: "વ્હાઇટ સોસ પાસ્તા + મીઠાવાળી ફ્રેન્ચ ફ્રાઈઝ + મોજિટો",
+                combo2: "કોમ્બો 2",
+                combo2Desc: "પ્લેન મેગી + ચીઝી નાચોસ + કોલ્ડ કોફી",
+                combo3: "કોમ્બો 3",
+                combo3Desc: "ગ્રિલ વેજિટેબલ સેન્ડવિચ + રેડ સોસ પાસ્તા + સ્પ્રાઈટ",
+                combo4: "કોમ્બો 4",
+                combo4Desc: "ચીઝ ગ્રિલ વેજિટેબલ સેન્ડવિચ + ચીઝ વેજિટેબલ મેગી + હોટ ચોકલેટ",
+
+                // Pre Order Items
+                catPreorder: "📋 એડવાન્સ ઓર્ડર",
+                sectionPreorder: "એડવાન્સ ઓર્ડર પર મળતી વસ્તુઓ",
+                preorderNote: "⏰ કૃપા કરીને એક દિવસ આગળથી ઓર્ડર આપશો",
+                bhagatMuthiya: "ભગત મુઠિયાનું શાક",
+                bhagatMuthiyaDesc: "ઓર્ડર પર તાજું બનાવેલું પરંપરાગત ગુજરાતી મુઠિયાનું શાક.",
+                chokhaPuda: "ચોખાના પુડા",
+                chokhaPudaDesc: "ઓર્ડર પર તાજું બનાવેલું ક્રિસ્પી ચોખાના લોટના પુડા.",
+
+                // Info sections
+                openingHours: "🕒 ખુલવાનો સમય",
+                monFri: "સોમવાર - શુક્રવાર",
+                satSun: "શનિવાર - રવિવાર",
+                contactUs: "📍 સંપર્ક કરો",
+                address: "આનંદ ટોકીઝની બાજુમાં, સરદાર માર્કેટ રોડ, બીલીમોરા",
+                callBtn1: "99745 47009 (મૃણાલ મિસ્ત્રી)",
+                callBtn2: "68269 83834 (મીતા મિસ્ત્રી)"
+            }
+        };
+
+        let currentLang = 'en';
+
+        // Language selection from modal
+        function selectLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('selectedLanguage', lang);
+            document.getElementById('langModal').classList.add('hidden');
+            applyTranslations(lang);
+            updateLangButton(lang);
+        }
+
+        // Toggle language from button
+        function toggleLanguage() {
+            const newLang = currentLang === 'en' ? 'gu' : 'en';
+            currentLang = newLang;
+            localStorage.setItem('selectedLanguage', newLang);
+            applyTranslations(newLang);
+            updateLangButton(newLang);
+        }
+
+        // Update language button text
+        function updateLangButton(lang) {
+            document.getElementById('lang-text').textContent = lang === 'en' ? 'EN' : 'ગુ';
+        }
+
+        // Apply translations to all elements
+        function applyTranslations(lang) {
+            const t = translations[lang];
+
+            // Header
+            document.querySelector('h1').textContent = t.welcome;
+            document.querySelector('.description').innerHTML = t.description;
+            document.querySelectorAll('.description')[1].innerHTML = t.partyOrders;
+            document.querySelector('.delivery-badge').textContent = t.deliveryBadge;
+            document.querySelector('.helper-text').textContent = t.helperText;
+
+            // Category buttons
+            const catBtns = document.querySelectorAll('.cat-btn');
+            catBtns[0].innerHTML = t.catSandwiches;
+            catBtns[1].innerHTML = t.catFries;
+            catBtns[2].innerHTML = t.catBeverages;
+            catBtns[3].innerHTML = t.catSpecial;
+            catBtns[4].innerHTML = t.catCombos;
+            catBtns[5].innerHTML = t.catPreorder;
+
+            // Section headers
+            document.querySelectorAll('.section-header')[0].textContent = t.sectionSandwiches;
+            document.querySelectorAll('.section-header')[1].textContent = t.sectionFries;
+            document.querySelectorAll('.section-header')[2].textContent = t.sectionBeverages;
+            document.querySelectorAll('.section-header')[3].textContent = t.sectionSpecial;
+            document.querySelectorAll('.section-header')[4].textContent = t.sectionCombos;
+            document.querySelectorAll('.section-header')[5].textContent = t.sectionPreorder;
+
+            // Pre Order note
+            const preorderSection = document.getElementById('preorder');
+            preorderSection.querySelector('p').textContent = t.preorderNote;
+
+            // Menu items - using data attributes would be cleaner, but this works
+            const items = document.querySelectorAll('.item-name');
+            const descs = document.querySelectorAll('.item-desc');
+
+            // Sandwiches (0-5)
+            items[0].textContent = t.vegSandwich;
+            descs[0].textContent = t.vegSandwichDesc;
+            items[1].textContent = t.cheeseVegSandwich;
+            descs[1].textContent = t.cheeseVegSandwichDesc;
+            items[2].textContent = t.cheesePlainSandwich;
+            descs[2].textContent = t.cheesePlainSandwichDesc;
+            items[3].textContent = t.grillVegSandwich;
+            descs[3].textContent = t.grillVegSandwichDesc;
+            items[4].textContent = t.grillVegCheeseSandwich;
+            descs[4].textContent = t.grillVegCheeseSandwichDesc;
+            items[5].textContent = t.breadButter;
+            descs[5].textContent = t.breadButterDesc;
+
+            // Fries & Maggie (6-11)
+            items[6].textContent = t.saltedFries;
+            descs[6].textContent = t.saltedFriesDesc;
+            items[7].textContent = t.periPeriFries;
+            descs[7].textContent = t.periPeriFriesDesc;
+            items[8].textContent = t.plainMaggie;
+            descs[8].textContent = t.plainMaggieDesc;
+            items[9].textContent = t.cheesePlainMaggie;
+            descs[9].textContent = t.cheesePlainMaggieDesc;
+            items[10].textContent = t.vegMaggie;
+            descs[10].textContent = t.vegMaggieDesc;
+            items[11].textContent = t.cheeseVegMaggie;
+            descs[11].textContent = t.cheeseVegMaggieDesc;
+
+            // Beverages (12-19)
+            items[12].textContent = t.masalaTea;
+            descs[12].textContent = t.masalaTeaDesc;
+            items[13].textContent = t.coffee;
+            descs[13].textContent = t.coffeeDesc;
+            items[14].textContent = t.bournvita;
+            descs[14].textContent = t.bournvitaDesc;
+            items[15].textContent = t.hotChocolate;
+            descs[15].textContent = t.hotChocolateDesc;
+            items[16].textContent = t.coldCoffee;
+            descs[16].textContent = t.coldCoffeeDesc;
+            items[17].textContent = t.mojito;
+            descs[17].textContent = t.mojitoDesc;
+            items[18].textContent = t.waterBottle;
+            descs[18].textContent = t.waterBottleDesc;
+            items[19].textContent = t.sprite;
+            descs[19].textContent = t.spriteDesc;
+
+            // Special Items (20-22)
+            items[20].textContent = t.whitePasta;
+            descs[20].textContent = t.whitePastaDesc;
+            items[21].textContent = t.redPasta;
+            descs[21].textContent = t.redPastaDesc;
+            items[22].textContent = t.cheesyNachos;
+            descs[22].textContent = t.cheesyNachosDesc;
+
+            // Combos (23-26)
+            items[23].textContent = t.combo1;
+            descs[23].textContent = t.combo1Desc;
+            items[24].textContent = t.combo2;
+            descs[24].textContent = t.combo2Desc;
+            items[25].textContent = t.combo3;
+            descs[25].textContent = t.combo3Desc;
+            items[26].textContent = t.combo4;
+            descs[26].textContent = t.combo4Desc;
+
+            // Pre Order Items (27-28)
+            items[27].textContent = t.bhagatMuthiya;
+            descs[27].textContent = t.bhagatMuthiyaDesc;
+            items[28].textContent = t.chokhaPuda;
+            descs[28].textContent = t.chokhaPudaDesc;
+
+            // Info sections
+            const infoTitles = document.querySelectorAll('.info-title');
+            infoTitles[0].innerHTML = t.openingHours;
+            infoTitles[1].innerHTML = t.contactUs;
+
+            const hoursCells = document.querySelectorAll('.hours-table td');
+            hoursCells[0].textContent = t.monFri;
+            hoursCells[2].textContent = t.satSun;
+
+            // Contact section
+            const contactAddress = document.querySelector('.contact-address');
+            contactAddress.textContent = t.address;
+
+            // Call buttons text
+            const callBtn1 = document.querySelector('.call-btn-1');
+            const callBtn2 = document.querySelector('.call-btn-2');
+            callBtn1.innerHTML = '<span style="margin-right:10px">📞</span>' + t.callBtn1 + '<svg viewBox="0 0 10 10" height="10" width="10"><path d="M0 5h7"></path><path d="M1 1l4 4-4 4"></path></svg>';
+            callBtn2.innerHTML = '<span style="margin-right:10px">📞</span>' + t.callBtn2 + '<svg viewBox="0 0 10 10" height="10" width="10"><path d="M0 5h7"></path><path d="M1 1l4 4-4 4"></path></svg>';
+        }
+
         // Dark mode toggle
         function toggleTheme() {
             const html = document.documentElement;
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             const icon = document.getElementById('theme-icon');
-            
+
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            
+
             icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
         }
 
-        // Load saved theme on page load
+        // Load saved settings on page load
         window.addEventListener('DOMContentLoaded', () => {
+            // Theme
             const savedTheme = localStorage.getItem('theme') || 'light';
             const icon = document.getElementById('theme-icon');
-            
             document.documentElement.setAttribute('data-theme', savedTheme);
             icon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+            // Language
+            const savedLang = localStorage.getItem('selectedLanguage');
+            if (savedLang) {
+                document.getElementById('langModal').classList.add('hidden');
+                applyTranslations(savedLang);
+                updateLangButton(savedLang);
+                currentLang = savedLang;
+            }
         });
 
         function openMenu(categoryName, btnElement) {
@@ -740,8 +1361,8 @@
             }
             document.getElementById(categoryName).style.display = "block";
             btnElement.classList.add("active");
-            
-            setTimeout(function() {
+
+            setTimeout(function () {
                 document.getElementById(categoryName).scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100);
         }
@@ -750,5 +1371,3 @@
 </body>
 
 </html>
-
-
