@@ -262,6 +262,53 @@
             transform: translateY(-2px);
         }
 
+        /* --- BACK BUTTON --- */
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 2px solid var(--solid-green);
+            color: var(--text-dark);
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+        }
+
+        .back-btn:hover {
+            background: var(--solid-green);
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* --- PAGE VIEW MODE --- */
+        .page-view header,
+        .page-view .nav-wrapper,
+        .page-view .info-section {
+            display: none !important;
+        }
+
+        .page-view .menu-section {
+            padding-top: 20px;
+        }
+
+        .page-view .container {
+            padding-top: 80px;
+        }
+
         /* --- MENU ITEMS --- */
         .menu-section {
             display: none;
@@ -649,6 +696,12 @@
         </div>
 
         <div id="sandwiches" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
             <h2 class="section-header">Sandwiches</h2>
             <ul class="menu-list">
                 <li class="menu-item-card">
@@ -704,6 +757,12 @@
         </div>
 
         <div id="fries" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
             <h2 class="section-header">Fries & Maggie</h2>
             <ul class="menu-list">
                 <li class="menu-item-card">
@@ -758,6 +817,12 @@
         </div>
 
         <div id="beverages" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
             <h2 class="section-header">Beverages</h2>
             <ul class="menu-list">
                 <li class="menu-item-card">
@@ -828,6 +893,12 @@
         </div>
 
         <div id="special" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
             <h2 class="section-header">Special Items</h2>
             <ul class="menu-list">
                 <li class="menu-item-card">
@@ -858,6 +929,12 @@
         </div>
 
         <div id="combos" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
             <h2 class="section-header">Combos</h2>
             <ul class="menu-list">
                 <li class="menu-item-card">
@@ -893,6 +970,12 @@
         </div>
 
         <div id="preorder" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
             <h2 class="section-header">Pre Order Items</h2>
             <p
                 style="color: var(--text-light); margin-bottom: 20px; padding: 15px; background: var(--item-bg); border-radius: 12px; text-align: center;">
@@ -1177,6 +1260,7 @@
             document.getElementById('langModal').classList.add('hidden');
             applyTranslations(lang);
             updateLangButton(lang);
+            updateBackButtonText(lang);
         }
 
         // Toggle language from button
@@ -1186,6 +1270,7 @@
             localStorage.setItem('selectedLanguage', newLang);
             applyTranslations(newLang);
             updateLangButton(newLang);
+            updateBackButtonText(newLang);
         }
 
         // Update language button text
@@ -1346,33 +1431,63 @@
                 document.getElementById('langModal').classList.add('hidden');
                 applyTranslations(savedLang);
                 updateLangButton(savedLang);
+                updateBackButtonText(savedLang);
                 currentLang = savedLang;
             }
         });
 
         function openMenu(categoryName, btnElement) {
+            // Hide all sections
             var sections = document.getElementsByClassName("menu-section");
             for (var i = 0; i < sections.length; i++) {
                 sections[i].style.display = "none";
             }
+
+            // Remove active state from all buttons
             var buttons = document.getElementsByClassName("cat-btn");
             for (var i = 0; i < buttons.length; i++) {
                 buttons[i].classList.remove("active");
             }
+
+            // Show selected section and add page-view mode
             document.getElementById(categoryName).style.display = "block";
             btnElement.classList.add("active");
+            document.body.classList.add("page-view");
 
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goBack() {
+            // Hide all sections
+            var sections = document.getElementsByClassName("menu-section");
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = "none";
+            }
+
+            // Remove active state from all buttons
+            var buttons = document.getElementsByClassName("cat-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            // Remove page-view mode to show main menu
+            document.body.classList.remove("page-view");
+
+            // Scroll to the category navigation section (not the header)
             setTimeout(function () {
-                document.getElementById(categoryName).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelector('.nav-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100);
+        }
+
+        // Update back button text based on language
+        function updateBackButtonText(lang) {
+            const backBtns = document.querySelectorAll('.back-text');
+            const text = lang === 'gu' ? 'મેનૂ પર પાછા જાઓ' : 'Back to Menu';
+            backBtns.forEach(btn => btn.textContent = text);
         }
     </script>
 
 </body>
 
 </html>
-
-
-
-
-
