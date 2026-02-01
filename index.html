@@ -745,6 +745,7 @@
                 <button class="cat-btn" onclick="openMenu('beverages', this)">☕ Beverages</button>
                 <button class="cat-btn" onclick="openMenu('special', this)">🍝 Special Items</button>
                 <button class="cat-btn" onclick="openMenu('combos', this)">🎁 Combos</button>
+                <button class="cat-btn" onclick="openMenu('garlicbread', this)">🧄 Garlic Bread</button>
                 <button class="cat-btn" onclick="openMenu('preorder', this)">📋 Pre Order</button>
             </div>
         </div>
@@ -778,8 +779,16 @@
                     <img src="PlainCheeseSandwich.jpeg" alt="Cheese Plain Sandwich" class="item-image">
                     <div class="item-details">
                         <h3 class="item-name">Cheese Plain Sandwich</h3>
-                        <p class="item-desc">Plain or Grilled bread with Amul cheese.</p>
+                        <p class="item-desc">Plain bread with Amul cheese.</p>
                         <span class="item-price">Rs. 60</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="GrillCheesePlainSandwich.jpeg" alt="Grill Cheese Plain Sandwich" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Grill Cheese Plain Sandwich</h3>
+                        <p class="item-desc">Plain grilled bread with Amul cheese.</p>
+                        <span class="item-price">Rs. 70</span>
                     </div>
                 </li>
                 <li class="menu-item-card">
@@ -1023,6 +1032,34 @@
             </ul>
         </div>
 
+        <div id="garlicbread" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
+            <h2 class="section-header">Garlic Bread</h2>
+            <ul class="menu-list">
+                <li class="menu-item-card">
+                    <img src="GarlicBread.jpeg" alt="Garlic Bread" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Garlic Bread</h3>
+                        <p class="item-desc">Crispy bread with garlic butter and herbs.</p>
+                        <span class="item-price">Rs. 130</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="VegetableGarlicBread.jpeg" alt="Vegetable Garlic Bread" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Vegetable Garlic Bread</h3>
+                        <p class="item-desc">Garlic bread topped with fresh vegetables.</p>
+                        <span class="item-price">Rs. 150</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
         <div id="preorder" class="menu-section">
             <button class="back-btn" onclick="goBack()">
                 <svg viewBox="0 0 24 24">
@@ -1123,7 +1160,9 @@
                 cheeseVegSandwich: "Cheese Vegetable Sandwich",
                 cheeseVegSandwichDesc: "Classic vegetable sandwich loaded with grated Amul cheese.",
                 cheesePlainSandwich: "Cheese Plain Sandwich",
-                cheesePlainSandwichDesc: "Plain or Grilled bread with Amul cheese.",
+                cheesePlainSandwichDesc: "Plain bread with Amul cheese.",
+                grillCheesePlainSandwich: "Grill Cheese Plain Sandwich",
+                grillCheesePlainSandwichDesc: "Plain grilled bread with Amul cheese.",
                 grillVegSandwich: "Grill Vegetable Sandwich",
                 grillVegSandwichDesc: "Fresh Vegetables with butter and green chutney in grill bread.",
                 grillVegCheeseSandwich: "Grill Vegetable Cheese Sandwich",
@@ -1181,6 +1220,14 @@
                 combo4: "Combo 4",
                 combo4Desc: "Cheese Grill Vegetable Sandwich + Cheese Vegetable Maggie + Hot Chocolate",
 
+                // Garlic Bread
+                catGarlicBread: "🧄 Garlic Bread",
+                sectionGarlicBread: "Garlic Bread",
+                garlicBread: "Garlic Bread",
+                garlicBreadDesc: "Crispy bread with garlic butter and herbs.",
+                vegGarlicBread: "Vegetable Garlic Bread",
+                vegGarlicBreadDesc: "Garlic bread topped with fresh vegetables.",
+
                 // Pre Order Items
                 catPreorder: "📋 Pre Order",
                 sectionPreorder: "Pre Order Items",
@@ -1227,7 +1274,9 @@
                 cheeseVegSandwich: "ચીઝ વેજિટેબલ સેન્ડવિચ",
                 cheeseVegSandwichDesc: "અમૂલ ચીઝથી ભરપૂર ક્લાસિક વેજિટેબલ સેન્ડવિચ.",
                 cheesePlainSandwich: "ચીઝ પ્લેન સેન્ડવિચ",
-                cheesePlainSandwichDesc: "અમૂલ ચીઝ સાથે પ્લેન અથવા ગ્રિલ્ડ બ્રેડ.",
+                cheesePlainSandwichDesc: "અમૂલ ચીઝ સાથે પ્લેન બ્રેડ.",
+                grillCheesePlainSandwich: "ગ્રિલ ચીઝ પ્લેન સેન્ડવિચ",
+                grillCheesePlainSandwichDesc: "અમૂલ ચીઝ સાથે પ્લેન ગ્રિલ્ડ બ્રેડ.",
                 grillVegSandwich: "ગ્રિલ વેજિટેબલ સેન્ડવિચ",
                 grillVegSandwichDesc: "ગ્રિલ બ્રેડમાં માખણ અને લીલી ચટણી સાથે તાજા શાકભાજી.",
                 grillVegCheeseSandwich: "ગ્રિલ વેજિટેબલ ચીઝ સેન્ડવિચ",
@@ -1284,6 +1333,14 @@
                 combo3Desc: "ગ્રિલ વેજિટેબલ સેન્ડવિચ + રેડ સોસ પાસ્તા + સ્પ્રાઈટ",
                 combo4: "કોમ્બો 4",
                 combo4Desc: "ચીઝ ગ્રિલ વેજિટેબલ સેન્ડવિચ + ચીઝ વેજિટેબલ મેગી + હોટ ચોકલેટ",
+
+                // Garlic Bread
+                catGarlicBread: "🧄 ગાર્લિક બ્રેડ",
+                sectionGarlicBread: "ગાર્લિક બ્રેડ",
+                garlicBread: "ગાર્લિક બ્રેડ",
+                garlicBreadDesc: "લસણ માખણ અને જડીબુટ્ટીઓ સાથે ક્રિસ્પી બ્રેડ.",
+                vegGarlicBread: "વેજિટેબલ ગાર્લિક બ્રેડ",
+                vegGarlicBreadDesc: "તાજા શાકભાજી સાથે ગાર્લિક બ્રેડ.",
 
                 // Pre Order Items
                 catPreorder: "📋 એડવાન્સ ઓર્ડર",
@@ -1350,7 +1407,8 @@
             catBtns[2].innerHTML = t.catBeverages;
             catBtns[3].innerHTML = t.catSpecial;
             catBtns[4].innerHTML = t.catCombos;
-            catBtns[5].innerHTML = t.catPreorder;
+            catBtns[5].innerHTML = t.catGarlicBread;
+            catBtns[6].innerHTML = t.catPreorder;
 
             // Section headers
             document.querySelectorAll('.section-header')[0].textContent = t.sectionSandwiches;
@@ -1358,7 +1416,8 @@
             document.querySelectorAll('.section-header')[2].textContent = t.sectionBeverages;
             document.querySelectorAll('.section-header')[3].textContent = t.sectionSpecial;
             document.querySelectorAll('.section-header')[4].textContent = t.sectionCombos;
-            document.querySelectorAll('.section-header')[5].textContent = t.sectionPreorder;
+            document.querySelectorAll('.section-header')[5].textContent = t.sectionGarlicBread;
+            document.querySelectorAll('.section-header')[6].textContent = t.sectionPreorder;
 
             // Pre Order note
             const preorderSection = document.getElementById('preorder');
@@ -1368,75 +1427,83 @@
             const items = document.querySelectorAll('.item-name');
             const descs = document.querySelectorAll('.item-desc');
 
-            // Sandwiches (0-5)
+            // Sandwiches (0-6)
             items[0].textContent = t.vegSandwich;
             descs[0].textContent = t.vegSandwichDesc;
             items[1].textContent = t.cheeseVegSandwich;
             descs[1].textContent = t.cheeseVegSandwichDesc;
             items[2].textContent = t.cheesePlainSandwich;
             descs[2].textContent = t.cheesePlainSandwichDesc;
-            items[3].textContent = t.grillVegSandwich;
-            descs[3].textContent = t.grillVegSandwichDesc;
-            items[4].textContent = t.grillVegCheeseSandwich;
-            descs[4].textContent = t.grillVegCheeseSandwichDesc;
-            items[5].textContent = t.breadButter;
-            descs[5].textContent = t.breadButterDesc;
+            items[3].textContent = t.grillCheesePlainSandwich;
+            descs[3].textContent = t.grillCheesePlainSandwichDesc;
+            items[4].textContent = t.grillVegSandwich;
+            descs[4].textContent = t.grillVegSandwichDesc;
+            items[5].textContent = t.grillVegCheeseSandwich;
+            descs[5].textContent = t.grillVegCheeseSandwichDesc;
+            items[6].textContent = t.breadButter;
+            descs[6].textContent = t.breadButterDesc;
 
-            // Fries & Maggie (6-11)
-            items[6].textContent = t.saltedFries;
-            descs[6].textContent = t.saltedFriesDesc;
-            items[7].textContent = t.periPeriFries;
-            descs[7].textContent = t.periPeriFriesDesc;
-            items[8].textContent = t.plainMaggie;
-            descs[8].textContent = t.plainMaggieDesc;
-            items[9].textContent = t.cheesePlainMaggie;
-            descs[9].textContent = t.cheesePlainMaggieDesc;
-            items[10].textContent = t.vegMaggie;
-            descs[10].textContent = t.vegMaggieDesc;
-            items[11].textContent = t.cheeseVegMaggie;
-            descs[11].textContent = t.cheeseVegMaggieDesc;
+            // Fries & Maggie (7-12)
+            items[7].textContent = t.saltedFries;
+            descs[7].textContent = t.saltedFriesDesc;
+            items[8].textContent = t.periPeriFries;
+            descs[8].textContent = t.periPeriFriesDesc;
+            items[9].textContent = t.plainMaggie;
+            descs[9].textContent = t.plainMaggieDesc;
+            items[10].textContent = t.cheesePlainMaggie;
+            descs[10].textContent = t.cheesePlainMaggieDesc;
+            items[11].textContent = t.vegMaggie;
+            descs[11].textContent = t.vegMaggieDesc;
+            items[12].textContent = t.cheeseVegMaggie;
+            descs[12].textContent = t.cheeseVegMaggieDesc;
 
-            // Beverages (12-19)
-            items[12].textContent = t.masalaTea;
-            descs[12].textContent = t.masalaTeaDesc;
-            items[13].textContent = t.coffee;
-            descs[13].textContent = t.coffeeDesc;
-            items[14].textContent = t.bournvita;
-            descs[14].textContent = t.bournvitaDesc;
-            items[15].textContent = t.hotChocolate;
-            descs[15].textContent = t.hotChocolateDesc;
-            items[16].textContent = t.coldCoffee;
-            descs[16].textContent = t.coldCoffeeDesc;
-            items[17].textContent = t.mojito;
-            descs[17].textContent = t.mojitoDesc;
-            items[18].textContent = t.waterBottle;
-            descs[18].textContent = t.waterBottleDesc;
-            items[19].textContent = t.sprite;
-            descs[19].textContent = t.spriteDesc;
+            // Beverages (13-20)
+            items[13].textContent = t.masalaTea;
+            descs[13].textContent = t.masalaTeaDesc;
+            items[14].textContent = t.coffee;
+            descs[14].textContent = t.coffeeDesc;
+            items[15].textContent = t.bournvita;
+            descs[15].textContent = t.bournvitaDesc;
+            items[16].textContent = t.hotChocolate;
+            descs[16].textContent = t.hotChocolateDesc;
+            items[17].textContent = t.coldCoffee;
+            descs[17].textContent = t.coldCoffeeDesc;
+            items[18].textContent = t.mojito;
+            descs[18].textContent = t.mojitoDesc;
+            items[19].textContent = t.waterBottle;
+            descs[19].textContent = t.waterBottleDesc;
+            items[20].textContent = t.sprite;
+            descs[20].textContent = t.spriteDesc;
 
-            // Special Items (20-22)
-            items[20].textContent = t.whitePasta;
-            descs[20].textContent = t.whitePastaDesc;
-            items[21].textContent = t.redPasta;
-            descs[21].textContent = t.redPastaDesc;
-            items[22].textContent = t.cheesyNachos;
-            descs[22].textContent = t.cheesyNachosDesc;
+            // Special Items (21-23)
+            items[21].textContent = t.whitePasta;
+            descs[21].textContent = t.whitePastaDesc;
+            items[22].textContent = t.redPasta;
+            descs[22].textContent = t.redPastaDesc;
+            items[23].textContent = t.cheesyNachos;
+            descs[23].textContent = t.cheesyNachosDesc;
 
-            // Combos (23-26)
-            items[23].textContent = t.combo1;
-            descs[23].textContent = t.combo1Desc;
-            items[24].textContent = t.combo2;
-            descs[24].textContent = t.combo2Desc;
-            items[25].textContent = t.combo3;
-            descs[25].textContent = t.combo3Desc;
-            items[26].textContent = t.combo4;
-            descs[26].textContent = t.combo4Desc;
+            // Combos (24-27)
+            items[24].textContent = t.combo1;
+            descs[24].textContent = t.combo1Desc;
+            items[25].textContent = t.combo2;
+            descs[25].textContent = t.combo2Desc;
+            items[26].textContent = t.combo3;
+            descs[26].textContent = t.combo3Desc;
+            items[27].textContent = t.combo4;
+            descs[27].textContent = t.combo4Desc;
 
-            // Pre Order Items (27-28)
-            items[27].textContent = t.bhagatMuthiya;
-            descs[27].textContent = t.bhagatMuthiyaDesc;
-            items[28].textContent = t.chokhaPuda;
-            descs[28].textContent = t.chokhaPudaDesc;
+            // Garlic Bread (28-29)
+            items[28].textContent = t.garlicBread;
+            descs[28].textContent = t.garlicBreadDesc;
+            items[29].textContent = t.vegGarlicBread;
+            descs[29].textContent = t.vegGarlicBreadDesc;
+
+            // Pre Order Items (30-31)
+            items[30].textContent = t.bhagatMuthiya;
+            descs[30].textContent = t.bhagatMuthiyaDesc;
+            items[31].textContent = t.chokhaPuda;
+            descs[31].textContent = t.chokhaPudaDesc;
 
             // Info sections
             const infoTitles = document.querySelectorAll('.info-title');
@@ -1560,5 +1627,7 @@
     </script>
 
 </body>
+
+</html>
 
 </html>
