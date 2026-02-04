@@ -5,92 +5,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Food Kutir | Menu</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dekko&family=Fraunces:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
     <style>
         /* --- CSS VARIABLES & RESET --- */
         :root {
-            --primary-green: linear-gradient(135deg, #22c55e, #16a34a);
-            --solid-green: #22c55e;
+            --primary-green: #65971a;
+            /* Updated to requested heading color */
+            --solid-green: #65971a;
             --accent-lime: #84cc16;
-            --dark-green: #15803d;
-            --bg-color: #f0fdf4;
-            --text-dark: #14532d;
-            --text-light: #4d7c0f;
-            --card-bg: #ffffff;
-            --card-shadow: 0 8px 20px rgba(34, 197, 94, 0.15);
-            --glow-gradient: linear-gradient(to right, #22c55e, #84cc16, #fbbf24);
-            --item-bg: #dcfce7;
-            --hours-bg: #f0fdf4;
-            --cat-btn-bg: #dcfce7;
-            --cat-btn-hover: #bbf7d0;
+            --dark-green: #4a7013;
+            --bg-color: #fdfbf7;
+            /* Warmer background base */
+            --text-dark: #713a32;
+            /* Updated to requested text color */
+            --text-light: #8f5e56;
+            --card-bg: #fbf8e6;
+            --card-shadow: 0 8px 20px rgba(113, 58, 50, 0.15);
+            --glow-gradient: linear-gradient(to right, #65971a, #84cc16, #fbbf24);
+            --item-bg: #f4fce3;
+            --hours-bg: #f4fce3;
+            --cat-btn-bg: #f4fce3;
+            --cat-btn-hover: #b5e48c;
+            --heading-font: 'Fraunces', serif;
+            --body-font: 'Dekko', cursive;
         }
 
-        [data-theme="dark"] {
-            --primary-green: linear-gradient(135deg, #16a34a, #15803d);
-            --solid-green: #22c55e;
-            --accent-lime: #84cc16;
-            --dark-green: #22c55e;
-            --bg-color: #0a0f0a;
-            --text-dark: #dcfce7;
-            --text-light: #86efac;
-            --card-bg: #1a2e1a;
-            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            --glow-gradient: linear-gradient(to right, #22c55e, #84cc16, #fbbf24);
-            --item-bg: #14532d;
-            --hours-bg: #14532d;
-            --cat-btn-bg: #14532d;
-            --cat-btn-hover: #166534;
-        }
+
 
         * {
-            box-sizing: border-box;
+            box-sizing: border-sizing;
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--body-font), 'Poppins', sans-serif;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        h1,
+        h2,
+        h3,
+        .section-header,
+        .lang-modal-title,
+        .info-title {
+            font-family: var(--heading-font);
+            color: var(--primary-green);
         }
 
         body {
             background-color: var(--bg-color);
+            background-image: url('bg_pattern.png');
+            background-repeat: repeat;
+            background-size: 300px;
+            /* Adjust scale of pattern */
             color: var(--text-dark);
             line-height: 1.6;
             padding-bottom: 80px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* --- DARK MODE TOGGLE --- */
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: var(--card-bg);
-            border: 2px solid var(--solid-green);
-            border-radius: 50px;
-            padding: 8px 12px;
-            cursor: pointer;
-            box-shadow: var(--card-shadow);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
 
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
-        }
-
-        .theme-toggle:active {
-            transform: scale(0.95);
-        }
 
         /* --- LANGUAGE TOGGLE --- */
         .lang-toggle {
             position: fixed;
             top: 20px;
-            right: 80px;
+            right: 20px;
             z-index: 1000;
             background: var(--card-bg);
             border: 2px solid var(--solid-green);
@@ -124,48 +104,23 @@
 
         /* --- HEADER --- */
         header {
-            background: var(--primary-green);
-            color: white;
+            background: transparent;
+            color: var(--text-dark);
             text-align: center;
-            padding: 5rem 1.5rem 3.5rem 1.5rem;
-            border-bottom-left-radius: 35px;
-            border-bottom-right-radius: 35px;
-            margin-bottom: -25px;
+            padding: 2rem 1.5rem 1rem 1.5rem;
+            margin-bottom: 20px;
             position: relative;
             overflow: hidden;
         }
 
-        header::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-
-            0%,
-            100% {
-                transform: translateX(-100%);
-            }
-
-            50% {
-                transform: translateX(100%);
-            }
-        }
-
         .logo-container {
-            background-color: white;
-            width: 140px;
-            height: 140px;
-            border-radius: 25px;
-            margin: 0 auto 1.5rem auto;
+            background-color: transparent;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 0.5rem auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 12px;
-            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
             position: relative;
             z-index: 1;
         }
@@ -197,7 +152,8 @@
         }
 
         .delivery-badge {
-            background-color: white;
+            background-color: var(--card-bg);
+            /* Updated to warm cream */
             color: var(--dark-green);
             display: inline-block;
             padding: 8px 24px;
@@ -238,7 +194,7 @@
         .cat-btn {
             flex: 1 1 45%;
             background-color: var(--cat-btn-bg);
-            border: none;
+            border: 2px solid var(--text-dark);
             color: var(--text-dark);
             padding: 12px 15px;
             border-radius: 12px;
@@ -253,6 +209,8 @@
         .cat-btn:hover {
             background-color: var(--cat-btn-hover);
             transform: translateY(-2px);
+            color: #007016;
+            border-color: #007016;
         }
 
         .cat-btn.active {
@@ -297,7 +255,8 @@
         /* --- PAGE VIEW MODE --- */
         .page-view header,
         .page-view .nav-wrapper,
-        .page-view .info-section {
+        .page-view .info-section,
+        .page-view .lang-toggle {
             display: none !important;
         }
 
@@ -350,14 +309,7 @@
             display: flex;
             align-items: flex-start;
             padding: 12px;
-            transition: all 0.3s ease;
             border: 2px solid transparent;
-        }
-
-        .menu-item-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(34, 197, 94, 0.25);
-            border-color: rgba(34, 197, 94, 0.3);
         }
 
         .item-image {
@@ -407,7 +359,6 @@
             margin-top: 30px;
             box-shadow: var(--card-shadow);
             text-align: center;
-            transition: background 0.3s ease;
         }
 
         .info-title {
@@ -430,6 +381,8 @@
         .hours-table td {
             padding: 12px 15px;
             font-size: 0.95rem;
+            border-top: 2px solid var(--text-dark);
+            border-bottom: 2px solid var(--text-dark);
         }
 
         .hours-table td:first-child {
@@ -437,6 +390,7 @@
             border-bottom-left-radius: 10px;
             font-weight: 600;
             text-align: left;
+            border-left: 2px solid var(--text-dark);
         }
 
         .hours-table td:last-child {
@@ -445,9 +399,10 @@
             color: var(--dark-green);
             font-weight: 700;
             text-align: right;
+            border-right: 2px solid var(--text-dark);
         }
 
-        /* --- GLOWING BUTTON EFFECT --- */
+        /* --- CALL BUTTON WRAPPER --- */
         .btn-glow-wrapper {
             position: relative;
             display: inline-flex;
@@ -457,29 +412,13 @@
             width: 100%;
         }
 
-        .btn-glow-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--glow-gradient);
-            border-radius: 50px;
-            filter: blur(15px);
-            opacity: 0.6;
-            transition: opacity 0.3s ease, filter 1s ease;
-        }
-
-        .btn-glow-wrapper:hover::before {
-            opacity: 1;
-            filter: blur(20px);
-        }
-
         .call-btn {
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            background: var(--dark-green);
+            background: #65971a;
             color: white;
             padding: 16px;
             text-decoration: none;
@@ -712,9 +651,7 @@
         </div>
     </div>
 
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-        <span id="theme-icon">🌙</span>
-    </button>
+
 
     <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Switch language">
         <span id="lang-icon">🌐</span>
@@ -913,7 +850,7 @@
                     </div>
                 </li>
                 <li class="menu-item-card">
-                    <img src="https://source.unsplash.com/80x80/?hotchocolate" alt="Hot Chocolate" class="item-image">
+                    <img src="hotchocolate.jpeg" alt="Hot Chocolate" class="item-image">
                     <div class="item-details">
                         <h3 class="item-name">Hot Chocolate</h3>
                         <p class="item-desc">Hot and creamy chocolate milk.</p>
@@ -1525,26 +1462,12 @@
             callBtn2.innerHTML = '<span style="margin-right:10px">📞</span>' + t.callBtn2 + '<svg viewBox="0 0 10 10" height="10" width="10"><path d="M0 5h7"></path><path d="M1 1l4 4-4 4"></path></svg>';
         }
 
-        // Dark mode toggle
-        function toggleTheme() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            const icon = document.getElementById('theme-icon');
 
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-
-            icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-        }
 
         // Load saved settings on page load
         window.addEventListener('DOMContentLoaded', () => {
-            // Theme
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            const icon = document.getElementById('theme-icon');
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            icon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+            // Theme removal
+
 
             // Language
             const savedLang = localStorage.getItem('selectedLanguage');
