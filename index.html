@@ -940,6 +940,9 @@
                 <span class="back-text">Back to Menu</span>
             </button>
             <h2 class="section-header">Combos</h2>
+            <p
+                style="color: var(--text-light); margin-bottom: 20px; padding: 15px; background: var(--item-bg); border-radius: 12px; text-align: center;">
+                ⏰ Combos are available only on Tuesday and Thursday</p>
             <ul class="menu-list">
                 <li class="menu-item-card">
                     <div class="item-details">
@@ -1160,6 +1163,7 @@
                 combo3Desc: "Grill Vegetable Sandwich + Red Sauce Pasta + Sprite",
                 combo4: "Combo 4",
                 combo4Desc: "Cheese Grill Vegetable Sandwich + Cheese Vegetable Maggie + Hot Chocolate",
+                comboNote: "⏰ Combos are available only on Tuesday and Thursday",
 
                 // Garlic Bread
                 catGarlicBread: "🧄 Garlic Bread",
@@ -1274,6 +1278,7 @@
                 combo3Desc: "ગ્રિલ વેજિટેબલ સેન્ડવિચ + રેડ સોસ પાસ્તા + સ્પ્રાઈટ",
                 combo4: "કોમ્બો 4",
                 combo4Desc: "ચીઝ ગ્રિલ વેજિટેબલ સેન્ડવિચ + ચીઝ વેજિટેબલ મેગી + હોટ ચોકલેટ",
+                comboNote: "⏰ કોમ્બો માત્ર મંગળવાર અને ગુરુવારે જ ઉપલબ્ધ છે",
 
                 // Garlic Bread
                 catGarlicBread: "🧄 ગાર્લિક બ્રેડ",
@@ -1359,6 +1364,10 @@
             document.querySelectorAll('.section-header')[4].textContent = t.sectionCombos;
             document.querySelectorAll('.section-header')[5].textContent = t.sectionGarlicBread;
             document.querySelectorAll('.section-header')[6].textContent = t.sectionPreorder;
+
+            // Combos Note
+            const combosSection = document.getElementById('combos');
+            combosSection.querySelector('p').textContent = t.comboNote;
 
             // Pre Order note
             const preorderSection = document.getElementById('preorder');
@@ -1554,7 +1563,5 @@
     </script>
 
 </body>
-
-</html>
 
 </html>
