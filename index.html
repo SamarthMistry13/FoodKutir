@@ -757,6 +757,15 @@
                         <span class="item-price">Rs. 30</span>
                     </div>
                 </li>
+                <li class="menu-item-card">
+                    <img src="https://source.unsplash.com/300x300/?sandwich,grilled" alt="Double Dekker Grill Sandwich"
+                        class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Double Dekker Grill Sandwich</h3>
+                        <p class="item-desc">Three layers of grilled bread loaded with veggies, cheese, and sauces.</p>
+                        <span class="item-price">Rs. 160</span>
+                    </div>
+                </li>
             </ul>
         </div>
 
@@ -891,6 +900,15 @@
                         <h3 class="item-name">Sprite</h3>
                         <p class="item-desc">Chilled Sprite.</p>
                         <span class="item-price">Rs. 20</span>
+                    </div>
+                </li>
+                <li class="menu-item-card">
+                    <img src="https://source.unsplash.com/300x300/?milkshake,oreo" alt="Oreo Milkshake"
+                        class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Oreo Milkshake</h3>
+                        <p class="item-desc">Thick and creamy milkshake with Oreo cookies.</p>
+                        <span class="item-price">Rs. 100</span>
                     </div>
                 </li>
             </ul>
@@ -1113,6 +1131,8 @@
                 grillVegCheeseSandwichDesc: "Fresh Vegetables with butter, green chutney and Amul Cheese in grill bread.",
                 breadButter: "Bread Butter",
                 breadButterDesc: "Bread slices with fresh butter.",
+                doubleDekkerSandwich: "Double Dekker Grill Sandwich",
+                doubleDekkerSandwichDesc: "Three layers of grilled bread loaded with veggies, cheese, and sauces.",
 
                 // Fries & Maggie
                 saltedFries: "Salted French Fries",
@@ -1145,6 +1165,8 @@
                 waterBottleDesc: "Mineral water (500ml).",
                 sprite: "Sprite",
                 spriteDesc: "Chilled Sprite.",
+                oreoMilkshake: "Oreo Milkshake",
+                oreoMilkshakeDesc: "Thick and creamy milkshake with Oreo cookies.",
 
                 // Special Items
                 whitePasta: "White Sauce Pasta",
@@ -1228,6 +1250,8 @@
                 grillVegCheeseSandwichDesc: "ગ્રિલ બ્રેડમાં માખણ, લીલી ચટણી અને અમૂલ ચીઝ સાથે તાજા શાકભાજી.",
                 breadButter: "બ્રેડ બટર",
                 breadButterDesc: "તાજા માખણ સાથે બ્રેડ સ્લાઈસ.",
+                doubleDekkerSandwich: "ડબલ ડેકર ગ્રીલ સેન્ડવિચ",
+                doubleDekkerSandwichDesc: "શાકભાજી, ચીઝ અને સોસથી ભરપૂર ગ્રીલ બ્રેડના ત્રણ સ્તરો.",
 
                 // Fries & Maggie
                 saltedFries: "મીઠાવાળી ફ્રેન્ચ ફ્રાઈઝ",
@@ -1260,6 +1284,8 @@
                 waterBottleDesc: "મિનરલ વોટર (500ml).",
                 sprite: "સ્પ્રાઈટ",
                 spriteDesc: "ઠંડી સ્પ્રાઈટ.",
+                oreoMilkshake: "ઓરિયો મિલ્કશેક",
+                oreoMilkshakeDesc: "ઓરિયો કૂકીઝ સાથે જાડો અને ક્રીમી મિલ્કશેક.",
 
                 // Special Items
                 whitePasta: "વ્હાઇટ સોસ પાસ્તા",
@@ -1377,7 +1403,7 @@
             const items = document.querySelectorAll('.item-name');
             const descs = document.querySelectorAll('.item-desc');
 
-            // Sandwiches (0-6)
+            // Sandwiches (0-7)
             items[0].textContent = t.vegSandwich;
             descs[0].textContent = t.vegSandwichDesc;
             items[1].textContent = t.cheeseVegSandwich;
@@ -1392,68 +1418,72 @@
             descs[5].textContent = t.grillVegCheeseSandwichDesc;
             items[6].textContent = t.breadButter;
             descs[6].textContent = t.breadButterDesc;
+            items[7].textContent = t.doubleDekkerSandwich;
+            descs[7].textContent = t.doubleDekkerSandwichDesc;
 
-            // Fries & Maggie (7-12)
-            items[7].textContent = t.saltedFries;
-            descs[7].textContent = t.saltedFriesDesc;
-            items[8].textContent = t.periPeriFries;
-            descs[8].textContent = t.periPeriFriesDesc;
-            items[9].textContent = t.plainMaggie;
-            descs[9].textContent = t.plainMaggieDesc;
-            items[10].textContent = t.cheesePlainMaggie;
-            descs[10].textContent = t.cheesePlainMaggieDesc;
-            items[11].textContent = t.vegMaggie;
-            descs[11].textContent = t.vegMaggieDesc;
-            items[12].textContent = t.cheeseVegMaggie;
-            descs[12].textContent = t.cheeseVegMaggieDesc;
+            // Fries & Maggie (8-13)
+            items[8].textContent = t.saltedFries;
+            descs[8].textContent = t.saltedFriesDesc;
+            items[9].textContent = t.periPeriFries;
+            descs[9].textContent = t.periPeriFriesDesc;
+            items[10].textContent = t.plainMaggie;
+            descs[10].textContent = t.plainMaggieDesc;
+            items[11].textContent = t.cheesePlainMaggie;
+            descs[11].textContent = t.cheesePlainMaggieDesc;
+            items[12].textContent = t.vegMaggie;
+            descs[12].textContent = t.vegMaggieDesc;
+            items[13].textContent = t.cheeseVegMaggie;
+            descs[13].textContent = t.cheeseVegMaggieDesc;
 
-            // Beverages (13-20)
-            items[13].textContent = t.masalaTea;
-            descs[13].textContent = t.masalaTeaDesc;
-            items[14].textContent = t.coffee;
-            descs[14].textContent = t.coffeeDesc;
-            items[15].textContent = t.bournvita;
-            descs[15].textContent = t.bournvitaDesc;
-            items[16].textContent = t.hotChocolate;
-            descs[16].textContent = t.hotChocolateDesc;
-            items[17].textContent = t.coldCoffee;
-            descs[17].textContent = t.coldCoffeeDesc;
-            items[18].textContent = t.mojito;
-            descs[18].textContent = t.mojitoDesc;
-            items[19].textContent = t.waterBottle;
-            descs[19].textContent = t.waterBottleDesc;
-            items[20].textContent = t.sprite;
-            descs[20].textContent = t.spriteDesc;
+            // Beverages (14-22)
+            items[14].textContent = t.masalaTea;
+            descs[14].textContent = t.masalaTeaDesc;
+            items[15].textContent = t.coffee;
+            descs[15].textContent = t.coffeeDesc;
+            items[16].textContent = t.bournvita;
+            descs[16].textContent = t.bournvitaDesc;
+            items[17].textContent = t.hotChocolate;
+            descs[17].textContent = t.hotChocolateDesc;
+            items[18].textContent = t.coldCoffee;
+            descs[18].textContent = t.coldCoffeeDesc;
+            items[19].textContent = t.mojito;
+            descs[19].textContent = t.mojitoDesc;
+            items[20].textContent = t.waterBottle;
+            descs[20].textContent = t.waterBottleDesc;
+            items[21].textContent = t.sprite;
+            descs[21].textContent = t.spriteDesc;
+            items[22].textContent = t.oreoMilkshake;
+            descs[22].textContent = t.oreoMilkshakeDesc;
 
-            // Special Items (21-23)
-            items[21].textContent = t.whitePasta;
-            descs[21].textContent = t.whitePastaDesc;
-            items[22].textContent = t.redPasta;
-            descs[22].textContent = t.redPastaDesc;
-            items[23].textContent = t.cheesyNachos;
-            descs[23].textContent = t.cheesyNachosDesc;
+            // Special Items (23-25)
+            items[23].textContent = t.whitePasta;
+            descs[23].textContent = t.whitePastaDesc;
+            items[24].textContent = t.redPasta;
+            descs[24].textContent = t.redPastaDesc;
+            items[25].textContent = t.cheesyNachos;
+            descs[25].textContent = t.cheesyNachosDesc;
 
-            // Combos (24-27)
-            items[24].textContent = t.combo1;
-            descs[24].textContent = t.combo1Desc;
-            items[25].textContent = t.combo2;
-            descs[25].textContent = t.combo2Desc;
-            items[26].textContent = t.combo3;
-            descs[26].textContent = t.combo3Desc;
-            items[27].textContent = t.combo4;
-            descs[27].textContent = t.combo4Desc;
+            // Combos (26-29)
+            items[26].textContent = t.combo1;
+            descs[26].textContent = t.combo1Desc;
+            items[27].textContent = t.combo2;
+            descs[27].textContent = t.combo2Desc;
+            items[28].textContent = t.combo3;
+            descs[28].textContent = t.combo3Desc;
+            items[29].textContent = t.combo4;
+            descs[29].textContent = t.combo4Desc;
 
-            // Garlic Bread (28-29)
-            items[28].textContent = t.garlicBread;
-            descs[28].textContent = t.garlicBreadDesc;
-            items[29].textContent = t.vegGarlicBread;
-            descs[29].textContent = t.vegGarlicBreadDesc;
+            // Garlic Bread (30-31)
+            items[30].textContent = t.garlicBread;
+            descs[30].textContent = t.garlicBreadDesc;
+            items[31].textContent = t.vegGarlicBread;
+            descs[31].textContent = t.vegGarlicBreadDesc;
 
-            // Pre Order Items (30-31)
-            items[30].textContent = t.bhagatMuthiya;
-            descs[30].textContent = t.bhagatMuthiyaDesc;
-            items[31].textContent = t.chokhaPuda;
-            descs[31].textContent = t.chokhaPudaDesc;
+            // Pre Order Items (32-33)
+            items[32].textContent = t.bhagatMuthiya;
+            descs[32].textContent = t.bhagatMuthiyaDesc;
+            items[33].textContent = t.chokhaPuda;
+            descs[33].textContent = t.chokhaPudaDesc;
 
             // Info sections
             const infoTitles = document.querySelectorAll('.info-title');
