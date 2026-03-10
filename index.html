@@ -838,22 +838,7 @@
             </button>
             <h2 class="section-header">Beverages</h2>
             <ul class="menu-list">
-                <li class="menu-item-card">
-                    <img src="Tea.jpeg" alt="Masala Tea" class="item-image">
-                    <div class="item-details">
-                        <h3 class="item-name">Masala Tea</h3>
-                        <p class="item-desc">Hot tea with Indian spices.</p>
-                        <span class="item-price">Rs. 20</span>
-                    </div>
-                </li>
-                <li class="menu-item-card">
-                    <img src="HotCoffee.jpeg" alt="Coffee" class="item-image">
-                    <div class="item-details">
-                        <h3 class="item-name">Coffee</h3>
-                        <p class="item-desc">Hot coffee with rich taste.</p>
-                        <span class="item-price">Rs. 30</span>
-                    </div>
-                </li>
+
                 <li class="menu-item-card">
                     <img src="https://source.unsplash.com/80x80/?chocolate,milk" alt="Bournvita" class="item-image">
                     <div class="item-details">
@@ -986,7 +971,7 @@
                 <li class="menu-item-card">
                     <div class="item-details">
                         <h3 class="item-name">Combo 4</h3>
-                        <p class="item-desc">Cheese Grill Vegetable Sandwich + Cheese Vegetable Maggie + Hot Chocolate
+                        <p class="item-desc">Cheese Grill Vegetable Sandwich + Cheese Vegetable Maggie + Cold Coffee
                         </p>
                         <span class="item-price">Rs. 200</span>
                     </div>
@@ -1149,10 +1134,6 @@
                 cheeseVegMaggieDesc: "Vegetable maggie with melted cheese.",
 
                 // Beverages
-                masalaTea: "Masala Tea",
-                masalaTeaDesc: "Hot tea with Indian spices.",
-                coffee: "Coffee",
-                coffeeDesc: "Hot coffee with rich taste.",
                 bournvita: "Bournvita",
                 bournvitaDesc: "Milk with Bournvita powder.",
                 hotChocolate: "Hot Chocolate",
@@ -1184,7 +1165,7 @@
                 combo3: "Combo 3",
                 combo3Desc: "Grill Vegetable Sandwich + Red Sauce Pasta + Sprite",
                 combo4: "Combo 4",
-                combo4Desc: "Cheese Grill Vegetable Sandwich + Cheese Vegetable Maggie + Hot Chocolate",
+                combo4Desc: "Cheese Grill Vegetable Sandwich + Cheese Vegetable Maggie + Cold Coffee",
                 comboNote: "⏰ Combos are available only on Tuesday and Thursday",
 
                 // Garlic Bread
@@ -1268,10 +1249,6 @@
                 cheeseVegMaggieDesc: "ઓગળેલી ચીઝ સાથે વેજિટેબલ મેગી.",
 
                 // Beverages
-                masalaTea: "મસાલા ચા",
-                masalaTeaDesc: "ભારતીય મસાલા સાથે ગરમ ચા.",
-                coffee: "કોફી",
-                coffeeDesc: "સમૃદ્ધ સ્વાદ સાથે ગરમ કોફી.",
                 bournvita: "બોર્નવિટા",
                 bournvitaDesc: "બોર્નવિટા પાવડર સાથે દૂધ.",
                 hotChocolate: "હોટ ચોકલેટ",
@@ -1303,7 +1280,7 @@
                 combo3: "કોમ્બો 3",
                 combo3Desc: "ગ્રિલ વેજિટેબલ સેન્ડવિચ + રેડ સોસ પાસ્તા + સ્પ્રાઈટ",
                 combo4: "કોમ્બો 4",
-                combo4Desc: "ચીઝ ગ્રિલ વેજિટેબલ સેન્ડવિચ + ચીઝ વેજિટેબલ મેગી + હોટ ચોકલેટ",
+                combo4Desc: "ચીઝ ગ્રિલ વેજિટેબલ સેન્ડવિચ + ચીઝ વેજિટેબલ મેગી + કોલ્ડ કોફી",
                 comboNote: "⏰ કોમ્બો માત્ર મંગળવાર અને ગુરુવારે જ ઉપલબ્ધ છે",
 
                 // Garlic Bread
@@ -1435,55 +1412,51 @@
             items[13].textContent = t.cheeseVegMaggie;
             descs[13].textContent = t.cheeseVegMaggieDesc;
 
-            // Beverages (14-22)
-            items[14].textContent = t.masalaTea;
-            descs[14].textContent = t.masalaTeaDesc;
-            items[15].textContent = t.coffee;
-            descs[15].textContent = t.coffeeDesc;
-            items[16].textContent = t.bournvita;
-            descs[16].textContent = t.bournvitaDesc;
-            items[17].textContent = t.hotChocolate;
-            descs[17].textContent = t.hotChocolateDesc;
-            items[18].textContent = t.coldCoffee;
-            descs[18].textContent = t.coldCoffeeDesc;
-            items[19].textContent = t.mojito;
-            descs[19].textContent = t.mojitoDesc;
-            items[20].textContent = t.waterBottle;
-            descs[20].textContent = t.waterBottleDesc;
-            items[21].textContent = t.sprite;
-            descs[21].textContent = t.spriteDesc;
-            items[22].textContent = t.oreoMilkshake;
-            descs[22].textContent = t.oreoMilkshakeDesc;
+            // Beverages (14-20)
+            items[14].textContent = t.bournvita;
+            descs[14].textContent = t.bournvitaDesc;
+            items[15].textContent = t.hotChocolate;
+            descs[15].textContent = t.hotChocolateDesc;
+            items[16].textContent = t.coldCoffee;
+            descs[16].textContent = t.coldCoffeeDesc;
+            items[17].textContent = t.mojito;
+            descs[17].textContent = t.mojitoDesc;
+            items[18].textContent = t.waterBottle;
+            descs[18].textContent = t.waterBottleDesc;
+            items[19].textContent = t.sprite;
+            descs[19].textContent = t.spriteDesc;
+            items[20].textContent = t.oreoMilkshake;
+            descs[20].textContent = t.oreoMilkshakeDesc;
 
-            // Special Items (23-25)
-            items[23].textContent = t.whitePasta;
-            descs[23].textContent = t.whitePastaDesc;
-            items[24].textContent = t.redPasta;
-            descs[24].textContent = t.redPastaDesc;
-            items[25].textContent = t.cheesyNachos;
-            descs[25].textContent = t.cheesyNachosDesc;
+            // Special Items (21-23)
+            items[21].textContent = t.whitePasta;
+            descs[21].textContent = t.whitePastaDesc;
+            items[22].textContent = t.redPasta;
+            descs[22].textContent = t.redPastaDesc;
+            items[23].textContent = t.cheesyNachos;
+            descs[23].textContent = t.cheesyNachosDesc;
 
-            // Combos (26-29)
-            items[26].textContent = t.combo1;
-            descs[26].textContent = t.combo1Desc;
-            items[27].textContent = t.combo2;
-            descs[27].textContent = t.combo2Desc;
-            items[28].textContent = t.combo3;
-            descs[28].textContent = t.combo3Desc;
-            items[29].textContent = t.combo4;
-            descs[29].textContent = t.combo4Desc;
+            // Combos (24-27)
+            items[24].textContent = t.combo1;
+            descs[24].textContent = t.combo1Desc;
+            items[25].textContent = t.combo2;
+            descs[25].textContent = t.combo2Desc;
+            items[26].textContent = t.combo3;
+            descs[26].textContent = t.combo3Desc;
+            items[27].textContent = t.combo4;
+            descs[27].textContent = t.combo4Desc;
 
-            // Garlic Bread (30-31)
-            items[30].textContent = t.garlicBread;
-            descs[30].textContent = t.garlicBreadDesc;
-            items[31].textContent = t.vegGarlicBread;
-            descs[31].textContent = t.vegGarlicBreadDesc;
+            // Garlic Bread (28-29)
+            items[28].textContent = t.garlicBread;
+            descs[28].textContent = t.garlicBreadDesc;
+            items[29].textContent = t.vegGarlicBread;
+            descs[29].textContent = t.vegGarlicBreadDesc;
 
-            // Pre Order Items (32-33)
-            items[32].textContent = t.bhagatMuthiya;
-            descs[32].textContent = t.bhagatMuthiyaDesc;
-            items[33].textContent = t.chokhaPuda;
-            descs[33].textContent = t.chokhaPudaDesc;
+            // Pre Order Items (30-31)
+            items[30].textContent = t.bhagatMuthiya;
+            descs[30].textContent = t.bhagatMuthiyaDesc;
+            items[31].textContent = t.chokhaPuda;
+            descs[31].textContent = t.chokhaPudaDesc;
 
             // Info sections
             const infoTitles = document.querySelectorAll('.info-title');
