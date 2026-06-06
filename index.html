@@ -1,0 +1,2946 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Food Kutir | Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- HIGH-ENERGY NEO-BRUTALISM UNIQUE CAFE UI --- */
+        :root {
+            --bg-color: #fdfaf6;
+            /* Warm off-white paper */
+            --dark-ink: #0f172a;
+            /* Deep bold slate black */
+            --brutal-shadow: 5px 5px 0px var(--dark-ink);
+            --brutal-shadow-hover: 1px 1px 0px var(--dark-ink);
+
+            --pop-green: #a3e635;
+            /* Vibrant lime */
+            --pop-orange: #ff7a59;
+            /* Punchy orange */
+            --pop-yellow: #fde047;
+            /* Bright yellow */
+            --pop-lavender: #c4b5fd;
+            --pop-blue: #93c5fd;
+
+            --border-thick: 3px solid var(--dark-ink);
+            --border-radius: 16px;
+
+            --heading-font: 'Space Grotesk', sans-serif;
+            --body-font: 'Space Grotesk', sans-serif;
+
+            /* Overrides for JS */
+            --primary-green: var(--pop-green);
+            --solid-green: var(--dark-ink);
+            --text-dark: var(--dark-ink);
+            --text-light: #475569;
+            --card-bg: #fff;
+            --item-bg: #f8fafc;
+            --hours-bg: #f8fafc;
+            --cat-btn-bg: #fff;
+            --cat-btn-hover: var(--pop-yellow);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--body-font);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        h1,
+        h2,
+        h3,
+        .section-header,
+        .lang-modal-title,
+        .info-title {
+            font-family: var(--heading-font);
+            color: var(--dark-ink);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(rgba(15, 23, 42, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--dark-ink);
+            line-height: 1.6;
+            padding-bottom: 90px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- LANGUAGE TOGGLE --- */
+        .lang-toggle {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 1000;
+            background: #fff;
+            border: var(--border-thick);
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+            box-shadow: var(--brutal-shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--dark-ink);
+            transition: all 0.15s ease-out;
+            text-transform: uppercase;
+        }
+
+        .lang-toggle:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px var(--dark-ink);
+            background: var(--pop-blue);
+        }
+
+        .lang-toggle:active {
+            transform: translate(5px, 5px);
+            box-shadow: var(--brutal-shadow-hover);
+        }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            padding: 5rem 1.5rem 3rem 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .logo-container {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--pop-lavender);
+            border: 4px solid var(--dark-ink);
+            box-shadow: 8px 8px 0px var(--dark-ink);
+            padding: 10px;
+            position: relative;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05) rotate(-5deg);
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
+            border: 3px solid var(--dark-ink);
+            object-fit: cover;
+            background: #fff;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            text-shadow: 4px 4px 0px var(--pop-green);
+        }
+
+        .description {
+            font-size: 1.15rem;
+            color: var(--dark-ink);
+            max-width: 650px;
+            margin: 0 auto 20px auto;
+            font-weight: 500;
+        }
+
+        .description strong {
+            color: var(--dark-ink);
+            background: var(--pop-yellow);
+            padding: 0 4px;
+        }
+
+        .delivery-badge {
+            background: var(--pop-orange);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            border: var(--border-thick);
+            box-shadow: var(--brutal-shadow);
+            margin-top: 15px;
+            transition: transform 0.2s;
+        }
+
+        .delivery-badge:hover {
+            transform: rotate(2deg) scale(1.05);
+        }
+
+        /* --- NAVIGATION --- */
+        .nav-wrapper {
+            background: transparent;
+            padding: 0;
+            margin-bottom: 50px;
+            position: relative;
+            box-shadow: none;
+        }
+
+        .helper-text {
+            text-align: center;
+            color: var(--dark-ink);
+            font-family: var(--heading-font);
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-thickness: 3px;
+            text-decoration-color: var(--pop-orange);
+            text-underline-offset: 4px;
+        }
+
+        .category-nav {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 15px 20px;
+            justify-content: flex-start;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        @media (min-width: 768px) {
+            .category-nav {
+                justify-content: center;
+                flex-wrap: wrap;
+                mask-image: none;
+                -webkit-mask-image: none;
+                padding: 10px 0;
+            }
+        }
+
+        .category-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-btn {
+            flex: 0 0 auto;
+            background: #fff;
+            border: var(--border-thick);
+            color: var(--dark-ink);
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease-out;
+            box-shadow: var(--brutal-shadow);
+            text-transform: uppercase;
+        }
+
+        .cat-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px var(--dark-ink);
+            background: var(--pop-yellow);
+        }
+
+        .cat-btn.active {
+            background: var(--pop-green);
+            transform: translate(5px, 5px);
+            box-shadow: var(--brutal-shadow-hover);
+        }
+
+        /* --- BACK BUTTON --- */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            border: var(--border-thick);
+            color: var(--dark-ink);
+            padding: 12px 26px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-bottom: 30px;
+            transition: all 0.15s ease-out;
+            box-shadow: var(--brutal-shadow);
+        }
+
+        .back-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px var(--dark-ink);
+            background: var(--pop-blue);
+        }
+
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 3;
+            fill: none;
+        }
+
+        /* --- PAGE VIEW MODE --- */
+        .page-view header,
+        .page-view .nav-wrapper,
+        .page-view .info-section,
+        .page-view .lang-toggle {
+            display: none !important;
+        }
+
+        .page-view .menu-section {
+            padding-top: 40px;
+        }
+
+        .page-view .container {
+            padding-top: 60px;
+        }
+
+        /* --- MENU ITEMS --- */
+        .menu-section {
+            display: none;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .section-header {
+            font-size: 3rem;
+            color: var(--dark-ink);
+            margin-bottom: 30px;
+            display: inline-block;
+            background: var(--pop-yellow);
+            padding: 5px 20px;
+            border: var(--border-thick);
+            box-shadow: var(--brutal-shadow);
+            transform: rotate(-2deg);
+        }
+
+        .menu-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item-card {
+            background: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--brutal-shadow);
+            display: flex;
+            align-items: stretch;
+            padding: 18px;
+            border: var(--border-thick);
+            transition: all 0.15s ease-out;
+            position: relative;
+        }
+
+        .menu-item-card:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 1px 1px 0px var(--dark-ink);
+        }
+
+        .item-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-right: 20px;
+            background-color: var(--item-bg);
+            flex-shrink: 0;
+            border: 3px solid var(--dark-ink);
+            transition: transform 0.2s;
+        }
+
+        .menu-item-card:hover .item-image {
+            transform: scale(1.05) rotate(-3deg);
+        }
+
+        .item-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .item-name {
+            font-weight: 700;
+            color: var(--dark-ink);
+            font-size: 1.35rem;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .item-desc {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .item-price {
+            display: inline-block;
+            font-weight: 700;
+            color: var(--dark-ink);
+            background: var(--pop-green);
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 1rem;
+            align-self: flex-start;
+            border: 2px solid var(--dark-ink);
+            box-shadow: 2px 2px 0px var(--dark-ink);
+        }
+
+        /* --- INFO SECTIONS --- */
+        .info-section {
+            background: var(--pop-lavender);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            margin-top: 60px;
+            box-shadow: var(--brutal-shadow);
+            border: var(--border-thick);
+            text-align: center;
+            position: relative;
+        }
+
+        .info-title {
+            color: var(--dark-ink);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .hours-table {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        .hours-table tr {
+            background-color: #fff;
+            transition: all 0.15s ease-out;
+            box-shadow: 3px 3px 0px var(--dark-ink);
+        }
+
+        .hours-table tr:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--dark-ink);
+        }
+
+        .hours-table td {
+            padding: 15px 20px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-top: var(--border-thick);
+            border-bottom: var(--border-thick);
+        }
+
+        .hours-table td:first-child {
+            border-left: var(--border-thick);
+            border-radius: 12px 0 0 12px;
+            text-align: left;
+            color: var(--dark-ink);
+        }
+
+        .hours-table td:last-child {
+            border-right: var(--border-thick);
+            border-radius: 0 12px 12px 0;
+            text-align: right;
+            border-left: none;
+        }
+
+        .contact-address {
+            color: var(--dark-ink) !important;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+            background: #fff;
+            display: inline-block;
+            padding: 10px;
+            border: 2px solid var(--dark-ink);
+            border-radius: 8px;
+        }
+
+        /* --- CALL BUTTON WRAPPER --- */
+        .btn-glow-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .call-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 320px;
+            background: var(--pop-blue);
+            color: var(--dark-ink);
+            padding: 16px 24px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            border: var(--border-thick);
+            box-shadow: var(--brutal-shadow);
+            transition: all 0.15s ease-out;
+            z-index: 1;
+        }
+
+        .call-btn:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 2px 2px 0px var(--dark-ink);
+            background: var(--pop-yellow);
+        }
+
+        .call-btn svg {
+            margin-left: 10px;
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 3;
+            fill: none;
+        }
+
+        /* --- LANGUAGE MODAL --- */
+        .lang-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInModal 0.2s ease;
+        }
+
+        .lang-modal.hidden {
+            display: none;
+        }
+
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .lang-modal-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            border: 4px solid var(--dark-ink);
+            box-shadow: 10px 10px 0px var(--pop-green);
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .lang-modal-title {
+            font-size: 2.2rem;
+            color: var(--dark-ink);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .lang-modal-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .lang-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .lang-btn {
+            padding: 16px 30px;
+            border: var(--border-thick);
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.15s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: var(--brutal-shadow);
+        }
+
+        .lang-btn-en {
+            background: var(--pop-yellow);
+            color: var(--dark-ink);
+        }
+
+        .lang-btn-gu {
+            background: #fff;
+            color: var(--dark-ink);
+        }
+
+        .lang-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px var(--dark-ink);
+        }
+
+        .lang-btn:active {
+            transform: translate(5px, 5px);
+            box-shadow: var(--brutal-shadow-hover);
+        }
+
+        /* --- BACK TO TOP BUTTON --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            background: var(--pop-green);
+            color: var(--dark-ink);
+            border: var(--border-thick);
+            border-radius: 16px;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            box-shadow: var(--brutal-shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease-out;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px var(--dark-ink);
+            background: var(--pop-yellow);
+        }
+
+        .back-to-top svg {
+            width: 30px;
+            height: 30px;
+            stroke: currentColor;
+            stroke-width: 3;
+            fill: none;
+        }
+
+        /* --- ADMIN PANEL --- */
+        .admin-fab {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: #fff;
+            color: var(--dark-ink);
+            border: var(--border-thick);
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: var(--brutal-shadow);
+            transition: all 0.15s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-fab:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px var(--dark-ink);
+            background: var(--pop-lavender);
+        }
+
+        .admin-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-modal-overlay.active {
+            display: flex;
+        }
+
+        .admin-modal {
+            background: #fff;
+            border: 4px solid var(--dark-ink);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 10px 10px 0px var(--pop-orange);
+            text-align: center;
+            position: relative;
+        }
+
+        .admin-modal h2 {
+            font-family: var(--heading-font);
+            color: var(--dark-ink);
+            margin-bottom: 15px;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+        }
+
+        .admin-modal p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .admin-modal input[type="password"] {
+            width: 100%;
+            padding: 16px 20px;
+            border: var(--border-thick);
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-family: var(--body-font);
+            color: var(--dark-ink);
+            margin-bottom: 25px;
+            outline: none;
+            transition: all 0.15s ease-out;
+            background: var(--item-bg);
+            box-sizing: border-box;
+            box-shadow: inset 4px 4px 0px rgba(0, 0, 0, 0.05);
+        }
+
+        .admin-modal input[type="password"]:focus {
+            background: #fff;
+            box-shadow: 3px 3px 0px var(--pop-blue);
+        }
+
+        .admin-modal .admin-error {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: none;
+            background: #ef4444;
+            border: 2px solid var(--dark-ink);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 0px var(--dark-ink);
+        }
+
+        .admin-btn {
+            padding: 14px 30px;
+            border: var(--border-thick);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: var(--body-font);
+            cursor: pointer;
+            transition: all 0.15s ease-out;
+            margin: 0 8px;
+            text-transform: uppercase;
+            box-shadow: var(--brutal-shadow);
+        }
+
+        .admin-btn-primary {
+            background: var(--pop-green);
+            color: var(--dark-ink);
+        }
+
+        .admin-btn-primary:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px var(--dark-ink);
+        }
+
+        .admin-btn-secondary {
+            background: #fff;
+            color: var(--dark-ink);
+        }
+
+        .admin-btn-secondary:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px var(--dark-ink);
+        }
+
+        .admin-btn-danger {
+            background: var(--pop-orange);
+            color: #fff;
+        }
+
+        .admin-btn-danger:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px var(--dark-ink);
+        }
+
+        .admin-panel {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .admin-panel-inner {
+            background: #fff;
+            max-width: 750px;
+            margin: 40px auto;
+            border-radius: 20px;
+            padding: 40px;
+            min-height: calc(100vh - 80px);
+            border: 4px solid var(--dark-ink);
+            box-shadow: 12px 12px 0px var(--pop-blue);
+            position: relative;
+        }
+
+        .admin-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: var(--border-thick);
+        }
+
+        .admin-panel-header h2 {
+            font-family: var(--heading-font);
+            color: var(--dark-ink);
+            font-size: 2.2rem;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .admin-close-btn {
+            background: var(--pop-orange);
+            border: var(--border-thick);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            color: #fff;
+            transition: all 0.15s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 3px 3px 0px var(--dark-ink);
+        }
+
+        .admin-close-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--dark-ink);
+        }
+
+        .admin-section-select {
+            width: 100%;
+            padding: 16px 20px;
+            border: var(--border-thick);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-family: var(--body-font);
+            color: var(--dark-ink);
+            margin-bottom: 30px;
+            outline: none;
+            background: var(--pop-yellow);
+            cursor: pointer;
+            transition: all 0.15s ease-out;
+            box-sizing: border-box;
+            box-shadow: var(--brutal-shadow);
+            font-weight: 700;
+        }
+
+        .admin-section-select:focus {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px var(--dark-ink);
+        }
+
+        .admin-item-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 40px 0;
+        }
+
+        .admin-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            background: #fff;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            border: var(--border-thick);
+            box-shadow: var(--brutal-shadow);
+            transition: all 0.15s ease-out;
+        }
+
+        .admin-item:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px var(--dark-ink);
+            background: #f8fafc;
+        }
+
+        .admin-item-info {
+            flex: 1;
+            padding-right: 15px;
+        }
+
+        .admin-item-info strong {
+            font-size: 1.25rem;
+            color: var(--dark-ink);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .admin-item-info small {
+            display: block;
+            color: var(--text-light);
+            font-size: 1rem;
+            margin: 6px 0 10px 0;
+            font-weight: 600;
+        }
+
+        .admin-item-info .admin-item-price {
+            display: inline-block;
+            color: var(--dark-ink);
+            font-weight: 700;
+            font-size: 1rem;
+            background: var(--pop-green);
+            padding: 4px 12px;
+            border-radius: 8px;
+            border: 2px solid var(--dark-ink);
+        }
+
+        .admin-item-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .admin-icon-btn {
+            background: #fff;
+            border: 2px solid var(--dark-ink);
+            color: var(--dark-ink);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 12px;
+            transition: all 0.15s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 3px 3px 0px var(--dark-ink);
+        }
+
+        .admin-icon-btn:hover {
+            transform: translate(1px, 1px);
+            box-shadow: 2px 2px 0px var(--dark-ink);
+            background: var(--pop-lavender);
+        }
+
+        .admin-icon-btn.delete:hover {
+            background: var(--pop-orange);
+            color: #fff;
+        }
+
+        .admin-form {
+            background: #fff;
+            border-radius: 20px;
+            padding: 35px;
+            margin-top: 30px;
+            border: var(--border-thick);
+            box-shadow: var(--brutal-shadow);
+        }
+
+        .admin-form h3 {
+            font-family: var(--heading-font);
+            color: var(--dark-ink);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            border-bottom: var(--border-thick);
+            padding-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .admin-form-group {
+            margin-bottom: 22px;
+        }
+
+        .admin-form-group label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--dark-ink);
+            margin-bottom: 10px;
+        }
+
+        .admin-form-group input,
+        .admin-form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: var(--border-thick);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-family: var(--body-font);
+            color: var(--dark-ink);
+            outline: none;
+            box-sizing: border-box;
+            transition: all 0.15s ease;
+            background: var(--item-bg);
+            box-shadow: inset 4px 4px 0px rgba(0, 0, 0, 0.05);
+        }
+
+        .admin-form-group input:focus,
+        .admin-form-group textarea:focus {
+            background: #fff;
+            box-shadow: 4px 4px 0px var(--pop-green);
+        }
+
+        .admin-form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .admin-form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .admin-logout-bar {
+            display: flex;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: var(--border-thick);
+        }
+
+        .admin-upload-group {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .admin-upload-group input[type="text"] {
+            flex: 1;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .admin-upload-btn {
+            padding: 15px 22px;
+            background: var(--pop-blue);
+            border: var(--border-thick);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: var(--body-font);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease-out;
+            color: var(--dark-ink);
+            box-shadow: var(--brutal-shadow);
+            text-transform: uppercase;
+        }
+
+        .admin-upload-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px var(--dark-ink);
+        }
+
+        .admin-img-preview {
+            margin-top: 15px;
+            max-width: 160px;
+            max-height: 120px;
+            border-radius: 12px;
+            object-fit: cover;
+            display: none;
+            border: var(--border-thick);
+            box-shadow: 4px 4px 0px var(--dark-ink);
+        }
+
+        .admin-changepw-form {
+            background: #fff;
+            border-radius: 20px;
+            padding: 35px;
+            margin-top: 40px;
+            border: var(--border-thick);
+            box-shadow: var(--brutal-shadow);
+            display: none;
+        }
+
+        .admin-changepw-form h3 {
+            font-family: var(--heading-font);
+            color: var(--dark-ink);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            border-bottom: var(--border-thick);
+            padding-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .admin-pw-error {
+            background: #ef4444;
+            border: 2px solid var(--dark-ink);
+            color: #fff;
+            font-weight: 700;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            display: none;
+            box-shadow: 2px 2px 0px var(--dark-ink);
+        }
+
+        .admin-pw-success {
+            background: var(--pop-green);
+            border: 2px solid var(--dark-ink);
+            color: var(--dark-ink);
+            font-weight: 700;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            display: none;
+            box-shadow: 2px 2px 0px var(--dark-ink);
+        }
+
+        /* --- ADMIN SECTION MANAGEMENT --- */
+        .admin-sections-area {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: var(--border-thick);
+        }
+        .admin-sections-area h3 {
+            font-family: var(--heading-font);
+            color: var(--dark-ink);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-transform: uppercase;
+        }
+        .admin-section-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 12px 0;
+        }
+        .admin-section-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            background: var(--item-bg);
+            border: 2px solid var(--dark-ink);
+            border-radius: 10px;
+            margin-bottom: 6px;
+            transition: all 0.15s;
+        }
+        .admin-section-item:hover { background: var(--pop-yellow); }
+        .admin-section-item-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+        .admin-section-item-info .section-emoji { font-size: 1.2rem; }
+        .admin-section-item-info .section-name {
+            font-weight: 700;
+            color: var(--dark-ink);
+            font-size: 0.95rem;
+        }
+        .admin-section-item-info .section-count {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            background: white;
+            padding: 2px 8px;
+            border-radius: 20px;
+            border: 1px solid var(--dark-ink);
+        }
+        .admin-section-form {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 16px;
+            margin-top: 10px;
+            border: var(--border-thick);
+            box-shadow: 4px 4px 0px var(--pop-green);
+            display: none;
+        }
+        .admin-section-form.active { display: block; }
+        .admin-section-form h4 {
+            font-family: var(--heading-font);
+            color: var(--dark-ink);
+            margin-bottom: 12px;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+        .admin-section-form .admin-form-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .admin-section-form .admin-form-row input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 2px solid var(--dark-ink);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: var(--body-font);
+            outline: none;
+            box-sizing: border-box;
+        }
+        .admin-section-form .admin-form-row input:focus { box-shadow: 3px 3px 0px var(--pop-green); }
+        .admin-section-form .emoji-input {
+            max-width: 60px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+    </style>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+</head>
+
+<body>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 19V5M5 12l7-7 7 7" />
+        </svg>
+    </button>
+
+    <!-- Language Selection Modal -->
+    <div id="langModal" class="lang-modal">
+        <div class="lang-modal-content">
+            <h2 class="lang-modal-title">🍽️ Food Kutir</h2>
+            <p class="lang-modal-subtitle">Select your language / ભાષા પસંદ કરો</p>
+            <div class="lang-buttons">
+                <button class="lang-btn lang-btn-en" onclick="selectLanguage('en')">
+                    English
+                </button>
+                <button class="lang-btn lang-btn-gu" onclick="selectLanguage('gu')">
+                    ગુજરાતી
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Switch language">
+        <span id="lang-icon">🌐</span>
+        <span id="lang-text">EN</span>
+    </button>
+
+    <header>
+        <div class="logo-container">
+            <img src="FoodKutir_FullLogo.png" alt="Food Kutir Logo">
+        </div>
+        <h1>Welcome to Food Kutir</h1>
+        <p class="description">
+            We use <strong>AMUL butter and cheese</strong> in all our products. Our food is <strong>100% PURE
+                VEGETARIAN</strong> and prepared using mineral water.
+        </p>
+        <p class="description" style="margin-top: 10px; font-weight: 600;">🎉 We take party orders for corporate
+            catering, birthday parties, and get-togethers!</p>
+        <div class="delivery-badge"> Your order will be ready in 15 - 20 minutes</div>
+    </header>
+
+    <div class="container">
+
+        <div class="nav-wrapper">
+            <p class="helper-text">What would you like to eat?</p>
+            <div class="category-nav" id="categoryNav">
+                <button class="cat-btn" data-section="sandwiches" onclick="openMenu('sandwiches', this)">🥪 Sandwiches</button>
+                <button class="cat-btn" data-section="fries" onclick="openMenu('fries', this)">🍟 Fries & Maggie</button>
+                <button class="cat-btn" data-section="beverages" onclick="openMenu('beverages', this)">☕ Beverages</button>
+                <button class="cat-btn" data-section="special" onclick="openMenu('special', this)">🍝 Special Items</button>
+                <button class="cat-btn" data-section="combos" onclick="openMenu('combos', this)">🎁 Combos</button>
+                <button class="cat-btn" data-section="garlicbread" onclick="openMenu('garlicbread', this)">🧄 Garlic Bread</button>
+                <button class="cat-btn" data-section="preorder" onclick="openMenu('preorder', this)">📋 Pre Order</button>
+            </div>
+        </div>
+
+        <div id="sandwiches" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
+            <h2 class="section-header">Sandwiches</h2>
+            <ul class="menu-list">
+                <li class="menu-item-card" data-i18n-key="vegSandwich">
+                    <img src="VegetableSandwich.jpeg" alt="Veg Sandwich" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Vegetable Sandwich</h3>
+                        <p class="item-desc">Fresh vegetables with butter and green chutney in plain bread.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="cheeseVegSandwich">
+                    <img src="VegetableCheeseSandwich.jpeg" alt="Cheese Veg Sandwich" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Cheese Vegetable Sandwich</h3>
+                        <p class="item-desc">Classic vegetable sandwich loaded with grated Amul cheese.</p>
+                        <span class="item-price">Rs. 80</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="cheesePlainSandwich">
+                    <img src="PlainCheeseSandwich.jpeg" alt="Cheese Plain Sandwich" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Cheese Plain Sandwich</h3>
+                        <p class="item-desc">Plain bread with Amul cheese.</p>
+                        <span class="item-price">Rs. 60</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="grillCheesePlainSandwich">
+                    <img src="GrillCheesePlainSandwich.jpeg" alt="Grill Cheese Plain Sandwich" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Grill Cheese Plain Sandwich</h3>
+                        <p class="item-desc">Plain grilled bread with Amul cheese.</p>
+                        <span class="item-price">Rs. 70</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="grillVegSandwich">
+                    <img src="VegetableGrillSandwich.jpeg" alt="Grill Veg Sandwich" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Grill Vegetable Sandwich</h3>
+                        <p class="item-desc">Fresh Vegetables with butter and green chutney in grill bread.</p>
+                        <span class="item-price">Rs. 60</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="grillVegCheeseSandwich">
+                    <img src="VegetableCheeseGrillSandwich.jpeg" alt="Grill Veg Cheese" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Grill Vegetable Cheese Sandwich </h3>
+                        <p class="item-desc">Fresh Vegetables with butter, green chutney and Amul Cheese in grill bread.
+                        </p>
+                        <span class="item-price">Rs. 90</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="breadButter">
+                    <img src="BreadButter.png" alt="Bread Butter" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Bread Butter</h3>
+                        <p class="item-desc">Bread slices with fresh butter.</p>
+                        <span class="item-price">Rs. 30</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="doubleDekkerSandwich">
+                    <img src="https://source.unsplash.com/300x300/?sandwich,grilled" alt="Double Dekker Grill Sandwich"
+                        class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Double Dekker Grill Sandwich</h3>
+                        <p class="item-desc">Three layers of grilled bread loaded with veggies, cheese, and sauces.</p>
+                        <span class="item-price">Rs. 160</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="fries" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
+            <h2 class="section-header">Fries & Maggie</h2>
+            <ul class="menu-list">
+                <li class="menu-item-card" data-i18n-key="saltedFries">
+                    <img src="SaltedFries.jpeg" alt="French Fries Salted" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Salted French Fries</h3>
+                        <p class="item-desc">Crispy fries with salt.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="periPeriFries">
+                    <img src="PeriPeriFries.jpeg" alt="French Fries Peri Peri" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">French Fries Peri Peri</h3>
+                        <p class="item-desc">Crispy fries with spicy peri peri masala.</p>
+                        <span class="item-price">Rs. 60</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="plainMaggie">
+                    <img src="PlainMaggie.jpeg" alt="Plain Maggie" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Plain Maggie</h3>
+                        <p class="item-desc">Simple maggie with basic masala.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="cheesePlainMaggie">
+                    <img src="PlainCheeseMaggie.jpeg" alt="Cheese Plain Maggie" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Cheese Plain Maggie</h3>
+                        <p class="item-desc">Plain maggie with melted cheese.</p>
+                        <span class="item-price">Rs. 70</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="vegMaggie">
+                    <img src="VegetableMaggie.jpeg" alt="Vegetable Maggie" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Vegetable Maggie</h3>
+                        <p class="item-desc">Plain Maggie cooked with fresh vegetables.</p>
+                        <span class="item-price">Rs. 70</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="cheeseVegMaggie">
+                    <img src="VegetableCheeseMaggie.jpeg" alt="Cheese Veg Maggie" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Cheese Vegetable Maggie</h3>
+                        <p class="item-desc">Vegetable maggie with melted cheese.</p>
+                        <span class="item-price">Rs. 90</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="beverages" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
+            <h2 class="section-header">Beverages</h2>
+            <ul class="menu-list">
+
+                <li class="menu-item-card" data-i18n-key="bournvita">
+                    <img src="https://source.unsplash.com/80x80/?chocolate,milk" alt="Bournvita" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Bournvita</h3>
+                        <p class="item-desc">Milk with Bournvita powder.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="hotChocolate">
+                    <img src="hotchocolate.jpeg" alt="Hot Chocolate" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Hot Chocolate</h3>
+                        <p class="item-desc">Hot and creamy chocolate milk.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="coldCoffee">
+                    <img src="ColdCoffee.png" alt="Cold Coffee" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Cold Coffee</h3>
+                        <p class="item-desc">Chilled coffee blended with milk.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="mojito">
+                    <img src="Mojito.png" alt="Mojito" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Mojito</h3>
+                        <p class="item-desc">Refreshing mint and lemon soda mocktail.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="waterBottle">
+                    <img src="WaterBottle.png" alt="Water Bottle" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Water Bottle</h3>
+                        <p class="item-desc">Mineral water (500ml).</p>
+                        <span class="item-price">Rs. 10</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="sprite">
+                    <img src="Sprite.png" alt="Cold Drinks" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Sprite</h3>
+                        <p class="item-desc">Chilled Sprite.</p>
+                        <span class="item-price">Rs. 20</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="oreoMilkshake">
+                    <img src="https://source.unsplash.com/300x300/?milkshake,oreo" alt="Oreo Milkshake"
+                        class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Oreo Milkshake</h3>
+                        <p class="item-desc">Thick and creamy milkshake with Oreo cookies.</p>
+                        <span class="item-price">Rs. 100</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="orangeMojito">
+                    <img src="https://source.unsplash.com/300x300/?orange,mojito" alt="Orange Mojito"
+                        class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Orange Mojito</h3>
+                        <p class="item-desc">Refreshing orange flavored mojito.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="blueLagoonMojito">
+                    <img src="https://source.unsplash.com/300x300/?blue,lagoon,cocktail" alt="Blue Lagoon Mojito"
+                        class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Blue Lagoon Mojito</h3>
+                        <p class="item-desc">Cool and vibrant blue lagoon mojito.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="guavaMojito">
+                    <img src="https://source.unsplash.com/300x300/?guava,drink" alt="Guava Mojito" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Guava Mojito</h3>
+                        <p class="item-desc">Tropical guava flavored mojito.</p>
+                        <span class="item-price">Rs. 50</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="special" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
+            <h2 class="section-header">Special Items</h2>
+            <ul class="menu-list">
+                <li class="menu-item-card" data-i18n-key="whitePasta">
+                    <img src="WhitePasta.jpeg" alt="White Sauce Pasta" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">White Sauce Pasta</h3>
+                        <p class="item-desc">Creamy white sauce pasta.</p>
+                        <span class="item-price">Rs. 80</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="redPasta">
+                    <img src="RedPasta.jpeg" alt="Red Sauce Pasta" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Red Sauce Pasta</h3>
+                        <p class="item-desc">Pasta with tangy tomato-based sauce.</p>
+                        <span class="item-price">Rs. 80</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="cheesyNachos">
+                    <img src="https://source.unsplash.com/80x80/?nachos,cheese" alt="Cheesy Nachos" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Cheesy Nachos</h3>
+                        <p class="item-desc">Crispy Nachos loaded with veggies, cheese.</p>
+                        <span class="item-price">Rs. 80</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="combos" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
+            <h2 class="section-header">Combos</h2>
+            <p
+                style="color: var(--text-light); margin-bottom: 20px; padding: 15px; background: var(--item-bg); border-radius: 12px; text-align: center;">
+                ⏰ Combos are available only on Tuesday and Thursday</p>
+            <ul class="menu-list">
+                <li class="menu-item-card" data-i18n-key="combo1">
+                    <div class="item-details">
+                        <h3 class="item-name">Combo 1</h3>
+                        <p class="item-desc">White Sauce Pasta + Salted French Fries + Mojito</p>
+                        <span class="item-price">Rs. 150</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="combo2">
+                    <div class="item-details">
+                        <h3 class="item-name">Combo 2</h3>
+                        <p class="item-desc">Plain Maggie + Cheesy Nachos + Cold Coffee</p>
+                        <span class="item-price">Rs. 150</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="combo3">
+                    <div class="item-details">
+                        <h3 class="item-name">Combo 3</h3>
+                        <p class="item-desc">Grill Vegetable Sandwich + Red Sauce Pasta + Sprite</p>
+                        <span class="item-price">Rs. 130</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="combo4">
+                    <div class="item-details">
+                        <h3 class="item-name">Combo 4</h3>
+                        <p class="item-desc">Cheese Grill Vegetable Sandwich + Cheese Vegetable Maggie + Cold Coffee
+                        </p>
+                        <span class="item-price">Rs. 200</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="garlicbread" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
+            <h2 class="section-header">Garlic Bread</h2>
+            <ul class="menu-list">
+                <li class="menu-item-card" data-i18n-key="garlicBread">
+                    <img src="GarlicBread.jpeg" alt="Garlic Bread" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Garlic Bread</h3>
+                        <p class="item-desc">Crispy bread with garlic butter and herbs.</p>
+                        <span class="item-price">Rs. 130</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="vegGarlicBread">
+                    <img src="VegetableGarlicBread.jpeg" alt="Vegetable Garlic Bread" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-name">Vegetable Garlic Bread</h3>
+                        <p class="item-desc">Garlic bread topped with fresh vegetables.</p>
+                        <span class="item-price">Rs. 150</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="preorder" class="menu-section">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span class="back-text">Back to Menu</span>
+            </button>
+            <h2 class="section-header">Pre Order Items</h2>
+            <p
+                style="color: var(--text-light); margin-bottom: 20px; padding: 15px; background: var(--item-bg); border-radius: 12px; text-align: center;">
+                ⏰ Please place your order one day in advance</p>
+            <ul class="menu-list">
+                <li class="menu-item-card" data-i18n-key="bhagatMuthiya">
+                    <div class="item-details">
+                        <h3 class="item-name">Bhagat Muthiya Sabji</h3>
+                        <p class="item-desc">Traditional Gujarati muthiya with sabji, freshly prepared on order.</p>
+                        <span class="item-price">Rs. 280/kg</span>
+                    </div>
+                </li>
+                <li class="menu-item-card" data-i18n-key="chokhaPuda">
+                    <div class="item-details">
+                        <h3 class="item-name">Chokha na Puda</h3>
+                        <p class="item-desc">Crispy rice flour puda, a traditional delicacy made fresh on order.</p>
+                        <span class="item-price">Rs. 20/piece</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="info-section">
+            <h3 class="info-title">🕒 Opening Hours</h3>
+            <table class="hours-table">
+                <tr>
+                    <td>Monday - Friday</td>
+                    <td>7:00 PM - 12:00 AM</td>
+                </tr>
+                <tr>
+                    <td>Saturday - Sunday</td>
+                    <td>7:00 PM - 12:30 AM</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="info-section">
+            <h3 class="info-title">📍 Contact Us</h3>
+            <p class="contact-address" style="color: #4d7c0f; margin-bottom: 20px;">Beside Anand Talkies, Sardar Market
+                Road, Bilimora</p>
+            <div class="btn-glow-wrapper" style="margin-bottom: 15px;">
+                <a href="tel:+919974547009" class="call-btn call-btn-1">
+                    <span style="margin-right:10px">📞</span> 99745 47009 (Mrunal Mistry)
+                    <svg viewBox="0 0 10 10" height="10" width="10">
+                        <path d="M0 5h7"></path>
+                        <path d="M1 1l4 4-4 4"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="btn-glow-wrapper">
+                <a href="tel:+919429783835" class="call-btn call-btn-2">
+                    <span style="margin-right:10px">📞</span> 94297 83835 (Mita Mistry)
+                    <svg viewBox="0 0 10 10" height="10" width="10">
+                        <path d="M0 5h7"></path>
+                        <path d="M1 1l4 4-4 4"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Translations object
+        const translations = {
+            en: {
+                // Header
+                welcome: "Welcome to Food Kutir",
+                description: 'We use <strong>AMUL butter and cheese</strong> in all our products. Our food is <strong>100% PURE VEGETARIAN</strong> and prepared using mineral water.',
+                partyOrders: "🎉 We take party orders for corporate catering, birthday parties, and get-togethers!",
+                deliveryBadge: "Your order will be ready in 15 - 20 minutes",
+                helperText: "What would you like to eat?",
+
+                // Category buttons
+                catSandwiches: "🥪 Sandwiches",
+                catFries: "🍟 Fries & Maggie",
+                catBeverages: "☕ Beverages",
+                catSpecial: "🍝 Special Items",
+                catCombos: "🎁 Combos",
+
+                // Section headers
+                sectionSandwiches: "Sandwiches",
+                sectionFries: "Fries & Maggie",
+                sectionBeverages: "Beverages",
+                sectionSpecial: "Special Items",
+                sectionCombos: "Combos",
+
+                // Sandwiches
+                vegSandwich: "Vegetable Sandwich",
+                vegSandwichDesc: "Fresh vegetables with butter and green chutney in plain bread.",
+                cheeseVegSandwich: "Cheese Vegetable Sandwich",
+                cheeseVegSandwichDesc: "Classic vegetable sandwich loaded with grated Amul cheese.",
+                cheesePlainSandwich: "Cheese Plain Sandwich",
+                cheesePlainSandwichDesc: "Plain bread with Amul cheese.",
+                grillCheesePlainSandwich: "Grill Cheese Plain Sandwich",
+                grillCheesePlainSandwichDesc: "Plain grilled bread with Amul cheese.",
+                grillVegSandwich: "Grill Vegetable Sandwich",
+                grillVegSandwichDesc: "Fresh Vegetables with butter and green chutney in grill bread.",
+                grillVegCheeseSandwich: "Grill Vegetable Cheese Sandwich",
+                grillVegCheeseSandwichDesc: "Fresh Vegetables with butter, green chutney and Amul Cheese in grill bread.",
+                breadButter: "Bread Butter",
+                breadButterDesc: "Bread slices with fresh butter.",
+                doubleDekkerSandwich: "Double Dekker Grill Sandwich",
+                doubleDekkerSandwichDesc: "Three layers of grilled bread loaded with veggies, cheese, and sauces.",
+
+                // Fries & Maggie
+                saltedFries: "Salted French Fries",
+                saltedFriesDesc: "Crispy fries with salt.",
+                periPeriFries: "French Fries Peri Peri",
+                periPeriFriesDesc: "Crispy fries with spicy peri peri masala.",
+                plainMaggie: "Plain Maggie",
+                plainMaggieDesc: "Simple maggie with basic masala.",
+                cheesePlainMaggie: "Cheese Plain Maggie",
+                cheesePlainMaggieDesc: "Plain maggie with melted cheese.",
+                vegMaggie: "Vegetable Maggie",
+                vegMaggieDesc: "Plain Maggie cooked with fresh vegetables.",
+                cheeseVegMaggie: "Cheese Vegetable Maggie",
+                cheeseVegMaggieDesc: "Vegetable maggie with melted cheese.",
+
+                // Beverages
+                bournvita: "Bournvita",
+                bournvitaDesc: "Milk with Bournvita powder.",
+                hotChocolate: "Hot Chocolate",
+                hotChocolateDesc: "Hot and creamy chocolate milk.",
+                coldCoffee: "Cold Coffee",
+                coldCoffeeDesc: "Chilled coffee blended with milk.",
+                mojito: "Mojito",
+                mojitoDesc: "Refreshing mint and lemon soda mocktail.",
+                waterBottle: "Water Bottle",
+                waterBottleDesc: "Mineral water (500ml).",
+                sprite: "Sprite",
+                spriteDesc: "Chilled Sprite.",
+                oreoMilkshake: "Oreo Milkshake",
+                oreoMilkshakeDesc: "Thick and creamy milkshake with Oreo cookies.",
+                orangeMojito: "Orange Mojito",
+                orangeMojitoDesc: "Refreshing orange flavored mojito.",
+                blueLagoonMojito: "Blue Lagoon Mojito",
+                blueLagoonMojitoDesc: "Cool and vibrant blue lagoon mojito.",
+                guavaMojito: "Guava Mojito",
+                guavaMojitoDesc: "Tropical guava flavored mojito.",
+
+                // Special Items
+                whitePasta: "White Sauce Pasta",
+                whitePastaDesc: "Creamy white sauce pasta.",
+                redPasta: "Red Sauce Pasta",
+                redPastaDesc: "Pasta with tangy tomato-based sauce.",
+                cheesyNachos: "Cheesy Nachos",
+                cheesyNachosDesc: "Crispy Nachos loaded with veggies, cheese.",
+
+                // Combos
+                combo1: "Combo 1",
+                combo1Desc: "White Sauce Pasta + Salted French Fries + Mojito",
+                combo2: "Combo 2",
+                combo2Desc: "Plain Maggie + Cheesy Nachos + Cold Coffee",
+                combo3: "Combo 3",
+                combo3Desc: "Grill Vegetable Sandwich + Red Sauce Pasta + Sprite",
+                combo4: "Combo 4",
+                combo4Desc: "Cheese Grill Vegetable Sandwich + Cheese Vegetable Maggie + Cold Coffee",
+                comboNote: "⏰ Combos are available only on Tuesday and Thursday",
+
+                // Garlic Bread
+                catGarlicBread: "🧄 Garlic Bread",
+                sectionGarlicBread: "Garlic Bread",
+                garlicBread: "Garlic Bread",
+                garlicBreadDesc: "Crispy bread with garlic butter and herbs.",
+                vegGarlicBread: "Vegetable Garlic Bread",
+                vegGarlicBreadDesc: "Garlic bread topped with fresh vegetables.",
+
+                // Pre Order Items
+                catPreorder: "📋 Pre Order",
+                sectionPreorder: "Pre Order Items",
+                preorderNote: "⏰ Please place your order one day in advance",
+                bhagatMuthiya: "Bhagat Muthiya Sabji",
+                bhagatMuthiyaDesc: "Traditional Gujarati muthiya with sabji, freshly prepared on order.",
+                chokhaPuda: "Chokha na Puda",
+                chokhaPudaDesc: "Crispy rice flour puda, a traditional delicacy made fresh on order.",
+
+                // Info sections
+                openingHours: "🕒 Opening Hours",
+                monFri: "Monday - Friday",
+                satSun: "Saturday - Sunday",
+                contactUs: "📍 Contact Us",
+                address: "Beside Anand Talkies, Sardar Market Road, Bilimora",
+                callBtn1: "99745 47009 (Mrunal Mistry)",
+                callBtn2: "94297 83835 (Mita Mistry)"
+            },
+            gu: {
+                // Header
+                welcome: "ફૂડ કુટીરમાં આપનું સ્વાગત છે",
+                description: 'અમે અમારા બધા ઉત્પાદનોમાં <strong>અમૂલ માખણ અને ચીઝ</strong> વાપરીએ છીએ. અમારો ખોરાક <strong>100% શુદ્ધ શાકાહારી</strong> છે અને મિનરલ વોટરથી બનાવવામાં આવે છે.',
+                partyOrders: "🎉 અમે કોર્પોરેટ કેટરિંગ, બર્થડે પાર્ટી અને ગેટ-ટુગેધર માટે પાર્ટી ઓર્ડર લઈએ છીએ!",
+                deliveryBadge: "તમારો ઓર્ડર 15 - 20 મિનિટમાં તૈયાર થઈ જશે",
+                helperText: "તમે શું ખાવા માંગો છો?",
+
+                // Category buttons
+                catSandwiches: "🥪 સેન્ડવિચ",
+                catFries: "🍟 ફ્રાઈઝ અને મેગી",
+                catBeverages: "☕ પીણાં",
+                catSpecial: "🍝 સ્પેશિયલ આઇટમ્સ",
+                catCombos: "🎁 કોમ્બો",
+
+                // Section headers
+                sectionSandwiches: "સેન્ડવિચ",
+                sectionFries: "ફ્રાઈઝ અને મેગી",
+                sectionBeverages: "પીણાં",
+                sectionSpecial: "સ્પેશિયલ આઇટમ્સ",
+                sectionCombos: "કોમ્બો",
+
+                // Sandwiches
+                vegSandwich: "વેજિટેબલ સેન્ડવિચ",
+                vegSandwichDesc: "પ્લેન બ્રેડમાં માખણ અને લીલી ચટણી સાથે તાજા શાકભાજી.",
+                cheeseVegSandwich: "ચીઝ વેજિટેબલ સેન્ડવિચ",
+                cheeseVegSandwichDesc: "અમૂલ ચીઝથી ભરપૂર ક્લાસિક વેજિટેબલ સેન્ડવિચ.",
+                cheesePlainSandwich: "ચીઝ પ્લેન સેન્ડવિચ",
+                cheesePlainSandwichDesc: "અમૂલ ચીઝ સાથે પ્લેન બ્રેડ.",
+                grillCheesePlainSandwich: "ગ્રિલ ચીઝ પ્લેન સેન્ડવિચ",
+                grillCheesePlainSandwichDesc: "અમૂલ ચીઝ સાથે પ્લેન ગ્રિલ્ડ બ્રેડ.",
+                grillVegSandwich: "ગ્રિલ વેજિટેબલ સેન્ડવિચ",
+                grillVegSandwichDesc: "ગ્રિલ બ્રેડમાં માખણ અને લીલી ચટણી સાથે તાજા શાકભાજી.",
+                grillVegCheeseSandwich: "ગ્રિલ વેજિટેબલ ચીઝ સેન્ડવિચ",
+                grillVegCheeseSandwichDesc: "ગ્રિલ બ્રેડમાં માખણ, લીલી ચટણી અને અમૂલ ચીઝ સાથે તાજા શાકભાજી.",
+                breadButter: "બ્રેડ બટર",
+                breadButterDesc: "તાજા માખણ સાથે બ્રેડ સ્લાઈસ.",
+                doubleDekkerSandwich: "ડબલ ડેકર ગ્રીલ સેન્ડવિચ",
+                doubleDekkerSandwichDesc: "શાકભાજી, ચીઝ અને સોસથી ભરપૂર ગ્રીલ બ્રેડના ત્રણ સ્તરો.",
+
+                // Fries & Maggie
+                saltedFries: "મીઠાવાળી ફ્રેન્ચ ફ્રાઈઝ",
+                saltedFriesDesc: "મીઠા સાથે ક્રિસ્પી ફ્રાઈઝ.",
+                periPeriFries: "પેરી પેરી ફ્રેન્ચ ફ્રાઈઝ",
+                periPeriFriesDesc: "મસાલેદાર પેરી પેરી મસાલા સાથે ક્રિસ્પી ફ્રાઈઝ.",
+                plainMaggie: "પ્લેન મેગી",
+                plainMaggieDesc: "બેસિક મસાલા સાથે સાદી મેગી.",
+                cheesePlainMaggie: "ચીઝ પ્લેન મેગી",
+                cheesePlainMaggieDesc: "ઓગળેલી ચીઝ સાથે પ્લેન મેગી.",
+                vegMaggie: "વેજિટેબલ મેગી",
+                vegMaggieDesc: "તાજા શાકભાજી સાથે રાંધેલી પ્લેન મેગી.",
+                cheeseVegMaggie: "ચીઝ વેજિટેબલ મેગી",
+                cheeseVegMaggieDesc: "ઓગળેલી ચીઝ સાથે વેજિટેબલ મેગી.",
+
+                // Beverages
+                bournvita: "બોર્નવિટા",
+                bournvitaDesc: "બોર્નવિટા પાવડર સાથે દૂધ.",
+                hotChocolate: "હોટ ચોકલેટ",
+                hotChocolateDesc: "ગરમ અને ક્રીમી ચોકલેટ દૂધ.",
+                coldCoffee: "કોલ્ડ કોફી",
+                coldCoffeeDesc: "દૂધ સાથે મિશ્રિત ઠંડી કોફી.",
+                mojito: "મોજિટો",
+                mojitoDesc: "તાજગીભર્યું ફુદીનો અને લીંબુ સોડા મોકટેલ.",
+                waterBottle: "પાણીની બોટલ",
+                waterBottleDesc: "મિનરલ વોટર (500ml).",
+                sprite: "સ્પ્રાઈટ",
+                spriteDesc: "ઠંડી સ્પ્રાઈટ.",
+                oreoMilkshake: "ઓરિયો મિલ્કશેક",
+                oreoMilkshakeDesc: "ઓરિયો કૂકીઝ સાથે જાડો અને ક્રીમી મિલ્કશેક.",
+                orangeMojito: "ઓરેન્જ મોજિટો",
+                orangeMojitoDesc: "તાજગીભર્યું નારંગી ફ્લેવરનું મોજિટો.",
+                blueLagoonMojito: "બ્લુ લગૂન મોજિટો",
+                blueLagoonMojitoDesc: "ઠંડું અને જીવંત બ્લુ લગૂન મોજિટો.",
+                guavaMojito: "જામફળ મોજિટો",
+                guavaMojitoDesc: "ટ્રોપિકલ જામફળ ફ્લેવરનું મોજિટો.",
+
+                // Special Items
+                whitePasta: "વ્હાઇટ સોસ પાસ્તા",
+                whitePastaDesc: "ક્રીમી વ્હાઇટ સોસ પાસ્તા.",
+                redPasta: "રેડ સોસ પાસ્તા",
+                redPastaDesc: "ટેન્ગી ટોમેટો-બેઝ્ડ સોસ સાથે પાસ્તા.",
+                cheesyNachos: "ચીઝી નાચોસ",
+                cheesyNachosDesc: "શાકભાજી અને ચીઝથી ભરપૂર ક્રિસ્પી નાચોસ.",
+
+                // Combos
+                combo1: "કોમ્બો 1",
+                combo1Desc: "વ્હાઇટ સોસ પાસ્તા + મીઠાવાળી ફ્રેન્ચ ફ્રાઈઝ + મોજિટો",
+                combo2: "કોમ્બો 2",
+                combo2Desc: "પ્લેન મેગી + ચીઝી નાચોસ + કોલ્ડ કોફી",
+                combo3: "કોમ્બો 3",
+                combo3Desc: "ગ્રિલ વેજિટેબલ સેન્ડવિચ + રેડ સોસ પાસ્તા + સ્પ્રાઈટ",
+                combo4: "કોમ્બો 4",
+                combo4Desc: "ચીઝ ગ્રિલ વેજિટેબલ સેન્ડવિચ + ચીઝ વેજિટેબલ મેગી + કોલ્ડ કોફી",
+                comboNote: "⏰ કોમ્બો માત્ર મંગળવાર અને ગુરુવારે જ ઉપલબ્ધ છે",
+
+                // Garlic Bread
+                catGarlicBread: "🧄 ગાર્લિક બ્રેડ",
+                sectionGarlicBread: "ગાર્લિક બ્રેડ",
+                garlicBread: "ગાર્લિક બ્રેડ",
+                garlicBreadDesc: "લસણ માખણ અને જડીબુટ્ટીઓ સાથે ક્રિસ્પી બ્રેડ.",
+                vegGarlicBread: "વેજિટેબલ ગાર્લિક બ્રેડ",
+                vegGarlicBreadDesc: "તાજા શાકભાજી સાથે ગાર્લિક બ્રેડ.",
+
+                // Pre Order Items
+                catPreorder: "📋 એડવાન્સ ઓર્ડર",
+                sectionPreorder: "એડવાન્સ ઓર્ડર પર મળતી વસ્તુઓ",
+                preorderNote: "⏰ કૃપા કરીને એક દિવસ આગળથી ઓર્ડર આપશો",
+                bhagatMuthiya: "ભગત મુઠિયાનું શાક",
+                bhagatMuthiyaDesc: "ઓર્ડર પર તાજું બનાવેલું પરંપરાગત ગુજરાતી મુઠિયાનું શાક.",
+                chokhaPuda: "ચોખાના પુડા",
+                chokhaPudaDesc: "ઓર્ડર પર તાજું બનાવેલું ક્રિસ્પી ચોખાના લોટના પુડા.",
+
+                // Info sections
+                openingHours: "🕒 ખુલવાનો સમય",
+                monFri: "સોમવાર - શુક્રવાર",
+                satSun: "શનિવાર - રવિવાર",
+                contactUs: "📍 સંપર્ક કરો",
+                address: "આનંદ ટોકીઝની બાજુમાં, સરદાર માર્કેટ રોડ, બીલીમોરા",
+                callBtn1: "99745 47009 (મૃણાલ મિસ્ત્રી)",
+                callBtn2: "94297 83835 (મીતા મિસ્ત્રી)"
+            }
+        };
+
+        let currentLang = 'en';
+
+        // Language selection from modal
+        function selectLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('selectedLanguage', lang);
+            document.getElementById('langModal').classList.add('hidden');
+            applyTranslations(lang);
+            updateLangButton(lang);
+            updateBackButtonText(lang);
+        }
+
+        // Toggle language from button
+        function toggleLanguage() {
+            const newLang = currentLang === 'en' ? 'gu' : 'en';
+            currentLang = newLang;
+            localStorage.setItem('selectedLanguage', newLang);
+            applyTranslations(newLang);
+            updateLangButton(newLang);
+            updateBackButtonText(newLang);
+        }
+
+        // Update language button text
+        function updateLangButton(lang) {
+            document.getElementById('lang-text').textContent = lang === 'en' ? 'EN' : 'ગુ';
+        }
+
+        // Apply translations to all elements
+        function applyTranslations(lang) {
+            const t = translations[lang];
+
+            // Header
+            document.querySelector('h1').textContent = t.welcome;
+            document.querySelector('.description').innerHTML = t.description;
+            var descEls = document.querySelectorAll('.description');
+            if (descEls[1]) descEls[1].innerHTML = t.partyOrders;
+            document.querySelector('.delivery-badge').textContent = t.deliveryBadge;
+            document.querySelector('.helper-text').textContent = t.helperText;
+
+            // Category buttons & section headers - using data-section attributes
+            var sections = getSections();
+            Object.keys(sections).forEach(function(secId) {
+                var sec = sections[secId];
+                var navBtn = document.querySelector('.cat-btn[data-section="' + secId + '"]');
+                if (navBtn) {
+                    var displayName = (lang === 'gu' && sec.nameGu) ? sec.nameGu : sec.name;
+                    navBtn.textContent = sec.emoji + ' ' + displayName;
+                }
+                var sectionEl = document.getElementById(secId);
+                if (sectionEl) {
+                    var headerEl = sectionEl.querySelector('.section-header');
+                    if (headerEl) {
+                        headerEl.textContent = (lang === 'gu' && sec.nameGu) ? sec.nameGu : sec.name;
+                    }
+                    var noteEl = sectionEl.querySelector('p');
+                    if (noteEl && (sec.note || sec.noteGu)) {
+                        noteEl.textContent = (lang === 'gu' && sec.noteGu) ? sec.noteGu : sec.note;
+                    }
+                }
+            });
+
+            // Menu items - using data-i18n-key attributes for dynamic support
+            document.querySelectorAll('.menu-item-card[data-i18n-key]').forEach(function (card) {
+                var key = card.getAttribute('data-i18n-key');
+                var nameEl = card.querySelector('.item-name');
+                var descEl = card.querySelector('.item-desc');
+                if (nameEl && t[key]) nameEl.textContent = t[key];
+                if (descEl && t[key + 'Desc']) descEl.textContent = t[key + 'Desc'];
+            });
+
+            // Info sections
+            const infoTitles = document.querySelectorAll('.info-title');
+            if (infoTitles[0]) infoTitles[0].innerHTML = t.openingHours;
+            if (infoTitles[1]) infoTitles[1].innerHTML = t.contactUs;
+
+            const hoursCells = document.querySelectorAll('.hours-table td');
+            if (hoursCells[0]) hoursCells[0].textContent = t.monFri;
+            if (hoursCells[2]) hoursCells[2].textContent = t.satSun;
+
+            // Contact section
+            const contactAddress = document.querySelector('.contact-address');
+            if (contactAddress) contactAddress.textContent = t.address;
+
+            // Call buttons text
+            const callBtn1 = document.querySelector('.call-btn-1');
+            const callBtn2 = document.querySelector('.call-btn-2');
+            if (callBtn1) callBtn1.innerHTML = '<span style="margin-right:10px">📞</span>' + t.callBtn1 + '<svg viewBox="0 0 10 10" height="10" width="10"><path d="M0 5h7"></path><path d="M1 1l4 4-4 4"></path></svg>';
+            if (callBtn2) callBtn2.innerHTML = '<span style="margin-right:10px">📞</span>' + t.callBtn2 + '<svg viewBox="0 0 10 10" height="10" width="10"><path d="M0 5h7"></path><path d="M1 1l4 4-4 4"></path></svg>';
+        }
+
+
+
+        // Load saved settings on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            // Theme removal
+
+
+            // Language
+            const savedLang = localStorage.getItem('selectedLanguage');
+            if (savedLang) {
+                document.getElementById('langModal').classList.add('hidden');
+                applyTranslations(savedLang);
+                updateLangButton(savedLang);
+                updateBackButtonText(savedLang);
+                currentLang = savedLang;
+            }
+        });
+
+        function openMenu(categoryName, btnElement) {
+            // Hide all sections
+            var sections = document.getElementsByClassName("menu-section");
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = "none";
+            }
+
+            // Remove active state from all buttons
+            var buttons = document.getElementsByClassName("cat-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            // Show selected section and add page-view mode
+            document.getElementById(categoryName).style.display = "block";
+            btnElement.classList.add("active");
+            document.body.classList.add("page-view");
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goBack() {
+            // Hide all sections
+            var sections = document.getElementsByClassName("menu-section");
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = "none";
+            }
+
+            // Remove active state from all buttons
+            var buttons = document.getElementsByClassName("cat-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            // Remove page-view mode to show main menu
+            document.body.classList.remove("page-view");
+
+            // Scroll to the category navigation section (not the header)
+            setTimeout(function () {
+                document.querySelector('.nav-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        // Update back button text based on language
+        function updateBackButtonText(lang) {
+            const backBtns = document.querySelectorAll('.back-text');
+            const text = lang === 'gu' ? 'મેનૂ પર પાછા જાઓ' : 'Back to Menu';
+            backBtns.forEach(btn => btn.textContent = text);
+        }
+
+        // Back to Top button visibility
+        function handleScroll() {
+            const backToTopBtn = document.getElementById('backToTop');
+            if (window.scrollY > 100) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add scroll listener
+        window.addEventListener('scroll', handleScroll);
+
+        // ===== ADMIN PANEL =====
+        const ADMIN_PASSWORD = 'foodkutir@admin';
+        let isAdminLoggedIn = false;
+
+        // Firebase setup
+        const firebaseConfig = {
+            apiKey: "AIzaSyDMeoh5qGGx_hk51GwDN0_EjnMQytfRDQ0",
+            authDomain: "foodkutir-8fced.firebaseapp.com",
+            databaseURL: "https://foodkutir-8fced-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "foodkutir-8fced",
+            storageBucket: "foodkutir-8fced.firebasestorage.app",
+            messagingSenderId: "457196960848",
+            appId: "1:457196960848:web:b8f74f961632d248ab2555"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Cached menu data (loaded from Firebase)
+        let cachedMenuData = null;
+        let cachedAdminPw = null;
+        let cachedSections = null;
+
+        // Default sections configuration
+        const DEFAULT_SECTIONS = {
+            sandwiches: { name: 'Sandwiches', nameGu: '\u0ab8\u0ac7\u0aa8\u0acd\u0aa1\u0ab5\u0abf\u0a9a', emoji: '\ud83e\udd6a', order: 0, note: '', noteGu: '' },
+            fries: { name: 'Fries & Maggie', nameGu: '\u0aab\u0acd\u0ab0\u0abe\u0a88\u0a9d \u0a85\u0aa8\u0ac7 \u0aae\u0ac7\u0a97\u0ac0', emoji: '\ud83c\udf5f', order: 1, note: '', noteGu: '' },
+            beverages: { name: 'Beverages', nameGu: '\u0aaa\u0ac0\u0aa3\u0abe\u0a82', emoji: '\u2615', order: 2, note: '', noteGu: '' },
+            special: { name: 'Special Items', nameGu: '\u0ab8\u0acd\u0aaa\u0ac7\u0ab6\u0abf\u0aaf\u0ab2 \u0a86\u0a87\u0a9f\u0aae\u0acd\u0ab8', emoji: '\ud83c\udf5d', order: 3, note: '', noteGu: '' },
+            combos: { name: 'Combos', nameGu: '\u0a95\u0acb\u0aae\u0acd\u0aac\u0acb', emoji: '\ud83c\udf81', order: 4, note: '\u23f0 Combos are available only on Tuesday and Thursday', noteGu: '\u23f0 \u0a95\u0acb\u0aae\u0acd\u0aac\u0acb \u0aae\u0abe\u0aa4\u0acd\u0ab0 \u0aae\u0a82\u0a97\u0ab3\u0ab5\u0abe\u0ab0 \u0a85\u0aa8\u0ac7 \u0a97\u0ac1\u0ab0\u0ac1\u0ab5\u0abe\u0ab0\u0ac7 \u0a9c \u0a89\u0aaa\u0ab2\u0aac\u0acd\u0aa7 \u0a9b\u0ac7' },
+            garlicbread: { name: 'Garlic Bread', nameGu: '\u0a97\u0abe\u0ab0\u0acd\u0ab2\u0abf\u0a95 \u0aac\u0acd\u0ab0\u0ac7\u0aa1', emoji: '\ud83e\uddc4', order: 5, note: '', noteGu: '' },
+            preorder: { name: 'Pre Order Items', nameGu: '\u0a8f\u0aa1\u0ab5\u0abe\u0aa8\u0acd\u0ab8 \u0a93\u0ab0\u0acd\u0aa1\u0ab0 \u0aaa\u0ab0 \u0aae\u0ab3\u0aa4\u0ac0 \u0ab5\u0ab8\u0acd\u0aa4\u0ac1\u0a93', emoji: '\ud83d\udccb', order: 6, note: '\u23f0 Please place your order one day in advance', noteGu: '\u23f0 \u0a95\u0ac3\u0aaa\u0abe \u0a95\u0ab0\u0ac0\u0aa8\u0ac7 \u0a8f\u0a95 \u0aa6\u0abf\u0ab5\u0ab8 \u0a86\u0a97\u0ab3\u0aa5\u0ac0 \u0a93\u0ab0\u0acd\u0aa1\u0ab0 \u0a86\u0aaa\u0ab6\u0acb' }
+        };
+
+        function getSections() { return cachedSections || DEFAULT_SECTIONS; }
+
+        function getSortedSections() {
+            var secs = getSections();
+            return Object.keys(secs).map(function(id) {
+                return Object.assign({ id: id }, secs[id]);
+            }).sort(function(a, b) { return (a.order || 0) - (b.order || 0); });
+        }
+
+        function getAllSectionIds() {
+            return getSortedSections().map(function(s) { return s.id; });
+        }
+
+        // Get menu data (from cache, which is synced with Firebase)
+        function getMenuData() {
+            if (cachedMenuData) return JSON.parse(JSON.stringify(cachedMenuData));
+            return buildMenuDataFromDOM();
+        }
+
+        function buildMenuDataFromDOM() {
+            var sectionIds = getAllSectionIds();
+            var data = {};
+            sectionIds.forEach(function (secId) {
+                data[secId] = [];
+                var sec = document.getElementById(secId);
+                if (!sec) return;
+                sec.querySelectorAll('.menu-item-card').forEach(function (card) {
+                    var nameEl = card.querySelector('.item-name');
+                    var descEl = card.querySelector('.item-desc');
+                    var priceEl = card.querySelector('.item-price');
+                    var imgEl = card.querySelector('.item-image');
+                    var key = card.getAttribute('data-i18n-key') || '';
+                    data[secId].push({
+                        name: nameEl ? nameEl.textContent : '',
+                        desc: descEl ? descEl.textContent : '',
+                        price: priceEl ? priceEl.textContent : '',
+                        image: imgEl ? imgEl.getAttribute('src') : '',
+                        i18nKey: key
+                    });
+                });
+            });
+            return data;
+        }
+
+        function saveMenuData(data) {
+            cachedMenuData = data;
+            db.ref('menu').set(data);
+        }
+
+        function ensureSectionDOM(secId, secConfig) {
+            if (document.getElementById(secId)) return;
+            var container = document.querySelector('.container');
+            var infoSections = container.querySelectorAll('.info-section');
+            var insertBefore = infoSections.length > 0 ? infoSections[0] : null;
+            var secDiv = document.createElement('div');
+            secDiv.id = secId;
+            secDiv.className = 'menu-section';
+            var noteHtml = '';
+            if (secConfig.note) {
+                noteHtml = '<p style="color: var(--text-light); margin-bottom: 20px; padding: 15px; background: var(--item-bg); border-radius: 12px; text-align: center;">' + secConfig.note + '</p>';
+            }
+            secDiv.innerHTML = '<button class="back-btn" onclick="goBack()">' +
+                '<svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>' +
+                '<span class="back-text">' + (currentLang === 'gu' ? '\u0aae\u0ac7\u0aa8\u0ac2 \u0aaa\u0ab0 \u0aaa\u0abe\u0a9b\u0abe \u0a9c\u0abe\u0a93' : 'Back to Menu') + '</span>' +
+                '</button>' +
+                '<h2 class="section-header">' + secConfig.name + '</h2>' +
+                noteHtml +
+                '<ul class="menu-list"></ul>';
+            if (insertBefore) { container.insertBefore(secDiv, insertBefore); }
+            else { container.appendChild(secDiv); }
+            if (!document.querySelector('.cat-btn[data-section="' + secId + '"]')) {
+                var navContainer = document.getElementById('categoryNav');
+                var btn = document.createElement('button');
+                btn.className = 'cat-btn';
+                btn.setAttribute('data-section', secId);
+                btn.setAttribute('onclick', "openMenu('" + secId + "', this)");
+                btn.textContent = secConfig.emoji + ' ' + secConfig.name;
+                navContainer.appendChild(btn);
+            }
+        }
+
+        function renderMenuFromData(data) {
+            if (!data) return;
+            var sortedSections = getSortedSections();
+            sortedSections.forEach(function(sec) { ensureSectionDOM(sec.id, sec); });
+            Object.keys(data).forEach(function(secId) {
+                if (!getSections()[secId]) {
+                    ensureSectionDOM(secId, { name: secId, emoji: '\ud83d\udcc1', order: 99, note: '', noteGu: '' });
+                }
+            });
+            var allIds = getAllSectionIds();
+            Object.keys(data).forEach(function(id) {
+                if (allIds.indexOf(id) === -1) allIds.push(id);
+            });
+            allIds.forEach(function(secId) {
+                var sec = document.getElementById(secId);
+                var navBtn = document.querySelector('.cat-btn[data-section="' + secId + '"]');
+                var items = (data[secId] && Array.isArray(data[secId])) ? data[secId] : [];
+                if (items.length === 0) {
+                    if (navBtn) navBtn.style.display = 'none';
+                    return;
+                }
+                if (navBtn) navBtn.style.display = '';
+                if (!sec) return;
+                var menuList = sec.querySelector('.menu-list');
+                if (!menuList) return;
+                menuList.innerHTML = '';
+                items.forEach(function (item) {
+                    var li = document.createElement('li');
+                    li.className = 'menu-item-card';
+                    if (item.i18nKey) li.setAttribute('data-i18n-key', item.i18nKey);
+                    var html = '';
+                    if (item.image) {
+                        html += '<img src="' + item.image + '" alt="' + item.name + '" class="item-image">';
+                    }
+                    html += '<div class="item-details">';
+                    html += '<h3 class="item-name">' + item.name + '</h3>';
+                    html += '<p class="item-desc">' + item.desc + '</p>';
+                    html += '<span class="item-price">' + item.price + '</span>';
+                    html += '</div>';
+                    li.innerHTML = html;
+                    menuList.appendChild(li);
+                });
+            });
+            if (currentLang) applyTranslations(currentLang);
+            updateAdminSectionSelect();
+        }
+
+        function updateAdminSectionSelect() {
+            var sel = document.getElementById('adminSectionSelect');
+            if (!sel) return;
+            var currentVal = sel.value;
+            sel.innerHTML = '';
+            var sorted = getSortedSections();
+            var data = getMenuData();
+            sorted.forEach(function(sec) {
+                var items = (data[sec.id] && Array.isArray(data[sec.id])) ? data[sec.id] : [];
+                var opt = document.createElement('option');
+                opt.value = sec.id;
+                opt.textContent = sec.emoji + ' ' + sec.name + ' (' + items.length + ')';
+                sel.appendChild(opt);
+            });
+            if (currentVal && sel.querySelector('option[value="' + currentVal + '"]')) {
+                sel.value = currentVal;
+            }
+        }
+
+        // Listen for real-time menu updates from Firebase
+        db.ref('menu').on('value', function (snapshot) {
+            var data = snapshot.val();
+            if (data) {
+                cachedMenuData = data;
+                renderMenuFromData(data);
+            }
+        });
+
+        // Listen for real-time sections config from Firebase
+        db.ref('sections').on('value', function(snapshot) {
+            var data = snapshot.val();
+            if (data) {
+                cachedSections = data;
+                if (cachedMenuData) renderMenuFromData(cachedMenuData);
+            }
+        });
+
+        // Listen for real-time password updates from Firebase
+        db.ref('admin_password').on('value', function (snapshot) {
+            var pw = snapshot.val();
+            if (pw) cachedAdminPw = pw;
+        });
+
+        // Admin login
+        function showAdminLogin() {
+            if (isAdminLoggedIn) {
+                openAdminPanel();
+                return;
+            }
+            document.getElementById('adminLoginModal').classList.add('active');
+            document.getElementById('adminPasswordInput').value = '';
+            document.getElementById('adminError').style.display = 'none';
+            document.getElementById('adminPasswordInput').focus();
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('adminLoginModal').classList.remove('active');
+        }
+
+        function adminLogin() {
+            const pw = document.getElementById('adminPasswordInput').value;
+            const currentPw = cachedAdminPw || ADMIN_PASSWORD;
+            if (pw === currentPw) {
+                isAdminLoggedIn = true;
+                closeAdminLogin();
+                openAdminPanel();
+            } else {
+                document.getElementById('adminError').style.display = 'block';
+                document.getElementById('adminPasswordInput').value = '';
+                document.getElementById('adminPasswordInput').focus();
+            }
+        }
+
+        function adminLogout() {
+            isAdminLoggedIn = false;
+            closeAdminPanel();
+        }
+
+        // Admin panel
+        function openAdminPanel() {
+            document.getElementById('adminPanel').classList.add('active');
+            hideAdminForm();
+            renderAdminSections();
+            updateAdminSectionSelect();
+            renderAdminItems();
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanel').classList.remove('active');
+        }
+
+        function renderAdminItems() {
+            const secId = document.getElementById('adminSectionSelect').value;
+            const data = getMenuData();
+            const items = (data[secId] && Array.isArray(data[secId])) ? data[secId] : [];
+            const list = document.getElementById('adminItemList');
+            list.innerHTML = '';
+            if (items.length === 0) {
+                list.innerHTML = '<li style="text-align:center;color:var(--text-light);padding:20px;">No items in this section</li>';
+                return;
+            }
+            items.forEach(function (item, idx) {
+                const li = document.createElement('li');
+                li.className = 'admin-item';
+                li.innerHTML = '<div class="admin-item-info">' +
+                    '<strong>' + item.name + '</strong>' +
+                    '<small>' + item.desc + '</small>' +
+                    '<span class="admin-item-price">' + item.price + '</span>' +
+                    '</div>' +
+                    '<div class="admin-item-actions">' +
+                    '<button class="admin-icon-btn" onclick="editAdminItem(' + idx + ')" title="Edit">✏️</button>' +
+                    '<button class="admin-icon-btn delete" onclick="deleteAdminItem(' + idx + ')" title="Delete">🗑️</button>' +
+                    '</div>';
+                list.appendChild(li);
+            });
+        }
+
+        // Add / Edit form
+        function showAddForm() {
+            document.getElementById('adminForm').style.display = 'block';
+            document.getElementById('adminFormTitle').textContent = 'Add New Item';
+            document.getElementById('adminEditIndex').value = '-1';
+            document.getElementById('adminItemName').value = '';
+            document.getElementById('adminItemDesc').value = '';
+            document.getElementById('adminItemPrice').value = '';
+            document.getElementById('adminItemImage').value = '';
+            document.getElementById('adminFileInput').value = '';
+            document.getElementById('adminImgPreview').style.display = 'none';
+            document.getElementById('adminItemName').focus();
+        }
+
+        function editAdminItem(idx) {
+            const secId = document.getElementById('adminSectionSelect').value;
+            const data = getMenuData();
+            const item = data[secId][idx];
+            if (!item) return;
+            document.getElementById('adminForm').style.display = 'block';
+            document.getElementById('adminFormTitle').textContent = 'Edit Item';
+            document.getElementById('adminEditIndex').value = idx;
+            document.getElementById('adminItemName').value = item.name;
+            document.getElementById('adminItemDesc').value = item.desc;
+            document.getElementById('adminItemPrice').value = item.price;
+            document.getElementById('adminItemImage').value = item.image || '';
+            document.getElementById('adminFileInput').value = '';
+            var preview = document.getElementById('adminImgPreview');
+            if (item.image) {
+                preview.src = item.image;
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
+            }
+            document.getElementById('adminItemName').focus();
+        }
+
+        function hideAdminForm() {
+            document.getElementById('adminForm').style.display = 'none';
+        }
+
+        function saveAdminItem() {
+            const secId = document.getElementById('adminSectionSelect').value;
+            const name = document.getElementById('adminItemName').value.trim();
+            const desc = document.getElementById('adminItemDesc').value.trim();
+            const price = document.getElementById('adminItemPrice').value.trim();
+            const image = document.getElementById('adminItemImage').value.trim();
+            const editIdx = parseInt(document.getElementById('adminEditIndex').value);
+
+            if (!name || !price) {
+                alert('Item name and price are required!');
+                return;
+            }
+
+            const data = getMenuData();
+            if (!data[secId]) data[secId] = [];
+
+            const itemObj = {
+                name: name,
+                desc: desc,
+                price: price,
+                image: image,
+                i18nKey: ''
+            };
+
+            if (editIdx >= 0 && editIdx < data[secId].length) {
+                // Preserve i18n key on edit
+                itemObj.i18nKey = data[secId][editIdx].i18nKey || '';
+                data[secId][editIdx] = itemObj;
+            } else {
+                data[secId].push(itemObj);
+            }
+
+            saveMenuData(data);
+            hideAdminForm();
+            renderAdminItems();
+        }
+
+        function deleteAdminItem(idx) {
+            if (!confirm('Are you sure you want to delete this item?')) return;
+            const secId = document.getElementById('adminSectionSelect').value;
+            const data = getMenuData();
+            if (data[secId] && data[secId][idx] !== undefined) {
+                data[secId].splice(idx, 1);
+                saveMenuData(data);
+                renderAdminItems();
+            }
+        }
+
+        function resetMenuChanges() {
+            if (!confirm('This will reset all menu changes back to the original. Are you sure?')) return;
+            db.ref('menu').remove();
+            cachedMenuData = null;
+            location.reload();
+        }
+
+        // Change password
+        function showChangePwForm() {
+            document.getElementById('changePwForm').style.display = 'block';
+            document.getElementById('pwCurrent').value = '';
+            document.getElementById('pwNew').value = '';
+            document.getElementById('pwConfirm').value = '';
+            document.getElementById('pwError').style.display = 'none';
+            document.getElementById('pwSuccess').style.display = 'none';
+        }
+
+        function hideChangePwForm() {
+            document.getElementById('changePwForm').style.display = 'none';
+        }
+
+        function changePassword() {
+            const currentPw = document.getElementById('pwCurrent').value;
+            const newPw = document.getElementById('pwNew').value;
+            const confirmPw = document.getElementById('pwConfirm').value;
+            const savedPw = cachedAdminPw || ADMIN_PASSWORD;
+            const errEl = document.getElementById('pwError');
+            const successEl = document.getElementById('pwSuccess');
+            errEl.style.display = 'none';
+            successEl.style.display = 'none';
+
+            if (currentPw !== savedPw) {
+                errEl.textContent = 'Current password is incorrect.';
+                errEl.style.display = 'block';
+                return;
+            }
+            if (newPw.length < 4) {
+                errEl.textContent = 'New password must be at least 4 characters.';
+                errEl.style.display = 'block';
+                return;
+            }
+            if (newPw !== confirmPw) {
+                errEl.textContent = 'New passwords do not match.';
+                errEl.style.display = 'block';
+                return;
+            }
+            db.ref('admin_password').set(newPw);
+            cachedAdminPw = newPw;
+            successEl.textContent = 'Password changed successfully!';
+            successEl.style.display = 'block';
+            document.getElementById('pwCurrent').value = '';
+            document.getElementById('pwNew').value = '';
+            document.getElementById('pwConfirm').value = '';
+            setTimeout(function () { hideChangePwForm(); }, 1500);
+        }
+
+        // Auto-describe AI
+        function autoDescribe() {
+            var name = document.getElementById('adminItemName').value.trim();
+            if (!name) {
+                alert('Please enter an item name first!');
+                return;
+            }
+            var desc = generateDescription(name);
+            document.getElementById('adminItemDesc').value = desc;
+        }
+
+        function generateDescription(name) {
+            var n = name.toLowerCase();
+            var parts = [];
+            var style = '';
+            var base = '';
+            var extras = [];
+
+            // Cooking style
+            if (n.includes('grill')) style = 'grilled';
+            else if (n.includes('fried') || n.includes('crispy')) style = 'crispy';
+            else if (n.includes('baked')) style = 'freshly baked';
+            else if (n.includes('steamed')) style = 'steamed';
+
+            // Flavor modifiers
+            if (n.includes('cheese') || n.includes('cheesy')) extras.push('loaded with melted cheese');
+            if (n.includes('peri peri')) extras.push('with spicy peri peri seasoning');
+            if (n.includes('spicy') || n.includes('masala')) extras.push('with a spicy kick');
+            if (n.includes('plain')) extras.push('simple and classic');
+            if (n.includes('butter')) extras.push('with fresh butter');
+            if (n.includes('cream') || n.includes('creamy')) extras.push('rich and creamy');
+            if (n.includes('chocolate')) extras.push('with rich chocolate flavor');
+            if (n.includes('oreo')) extras.push('blended with Oreo cookies');
+            if (n.includes('vegetable') || n.includes('veg')) extras.push('with fresh vegetables');
+            if (n.includes('garlic')) extras.push('with aromatic garlic');
+            if (n.includes('herb')) extras.push('seasoned with herbs');
+            if (n.includes('hot')) extras.push('served hot');
+            if (n.includes('cold') || n.includes('chilled') || n.includes('iced')) extras.push('served chilled');
+            if (n.includes('double') || n.includes('loaded')) extras.push('generously loaded');
+
+            // Base item type
+            if (n.includes('mojito')) {
+                base = 'Refreshing mojito';
+                if (n.includes('orange')) base = 'Refreshing orange flavored mojito';
+                else if (n.includes('blue lagoon')) base = 'Cool and vibrant blue lagoon mojito';
+                else if (n.includes('guava')) base = 'Tropical guava flavored mojito';
+                else if (n.includes('mango')) base = 'Sweet mango flavored mojito';
+                else if (n.includes('watermelon')) base = 'Fresh watermelon flavored mojito';
+                else if (n.includes('strawberry')) base = 'Sweet strawberry flavored mojito';
+                else if (n.includes('mint') || n.includes('lemon')) base = 'Classic mint and lemon mojito';
+            } else if (n.includes('sandwich')) {
+                base = style ? (style.charAt(0).toUpperCase() + style.slice(1) + ' sandwich') : 'Freshly prepared sandwich';
+                style = '';
+            } else if (n.includes('burger')) {
+                base = 'Juicy burger with fresh toppings';
+            } else if (n.includes('pizza')) {
+                base = 'Hot pizza with a crispy crust';
+            } else if (n.includes('fries') || n.includes('french fries')) {
+                base = 'Golden crispy french fries';
+            } else if (n.includes('maggie') || n.includes('noodle')) {
+                base = 'Hot and tasty maggie noodles';
+            } else if (n.includes('pasta')) {
+                base = 'Delicious pasta cooked to perfection';
+                if (n.includes('white')) base = 'Creamy white sauce pasta';
+                else if (n.includes('red')) base = 'Tangy red sauce pasta';
+            } else if (n.includes('nachos')) {
+                base = 'Crispy nachos with toppings';
+            } else if (n.includes('coffee')) {
+                base = n.includes('cold') ? 'Chilled coffee blended with milk' : 'Hot brewed coffee';
+            } else if (n.includes('milkshake') || n.includes('shake')) {
+                base = 'Thick and creamy milkshake';
+            } else if (n.includes('lassi')) {
+                base = 'Traditional creamy lassi';
+            } else if (n.includes('juice')) {
+                base = 'Freshly squeezed juice';
+            } else if (n.includes('tea') || n.includes('chai')) {
+                base = 'Hot brewed tea';
+            } else if (n.includes('chocolate')) {
+                base = 'Rich chocolate drink';
+            } else if (n.includes('bournvita') || n.includes('horlicks')) {
+                base = 'Hot milk-based drink';
+            } else if (n.includes('lemonade') || n.includes('shikanji')) {
+                base = 'Refreshing lemonade';
+            } else if (n.includes('soda')) {
+                base = 'Chilled soda drink';
+            } else if (n.includes('garlic bread')) {
+                base = 'Crispy garlic bread with herbs';
+            } else if (n.includes('bread')) {
+                base = 'Fresh bread';
+            } else if (n.includes('wrap') || n.includes('roll')) {
+                base = 'Tightly rolled wrap with fillings';
+            } else if (n.includes('combo')) {
+                base = 'Value combo meal';
+            } else if (n.includes('cake') || n.includes('pastry')) {
+                base = 'Soft and delicious baked treat';
+            } else if (n.includes('ice cream')) {
+                base = 'Creamy and delightful ice cream';
+            } else {
+                base = 'Delicious ' + name.toLowerCase() + ', freshly prepared';
+            }
+
+            // Build final description
+            if (style && base.toLowerCase().indexOf(style) === -1) {
+                parts.push(style.charAt(0).toUpperCase() + style.slice(1) + ' ' + base.charAt(0).toLowerCase() + base.slice(1));
+            } else {
+                parts.push(base);
+            }
+
+            // Add up to 2 extras that aren't redundant
+            var added = 0;
+            for (var i = 0; i < extras.length && added < 2; i++) {
+                if (parts[0].toLowerCase().indexOf(extras[i].toLowerCase().substring(0, 8)) === -1) {
+                    parts[0] += ' ' + extras[i];
+                    added++;
+                }
+            }
+
+            // Ensure it ends with a period
+            var result = parts[0];
+            if (result.charAt(result.length - 1) !== '.') result += '.';
+            return result;
+        }
+
+
+        // Image upload
+        function handleImageUpload(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('Image too large! Please use an image under 2MB.');
+                    input.value = '';
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('adminItemImage').value = e.target.result;
+                    const preview = document.getElementById('adminImgPreview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Firebase handles real-time sync, no need for manual DOMContentLoaded apply
+
+        // ===== SECTION MANAGEMENT =====
+        function renderAdminSections() {
+            var list = document.getElementById('adminSectionList');
+            if (!list) return;
+            list.innerHTML = '';
+            var sorted = getSortedSections();
+            var data = getMenuData();
+            sorted.forEach(function(sec) {
+                var items = (data[sec.id] && Array.isArray(data[sec.id])) ? data[sec.id] : [];
+                var li = document.createElement('li');
+                li.className = 'admin-section-item';
+                li.innerHTML = '<div class="admin-section-item-info">' +
+                    '<span class="section-emoji">' + sec.emoji + '</span>' +
+                    '<span class="section-name">' + sec.name + '</span>' +
+                    '<span class="section-count">' + items.length + ' items</span>' +
+                    '</div>' +
+                    '<button class="admin-icon-btn delete" onclick="deleteSection(\'' + sec.id + '\')" title="Delete Section">🗑️</button>';
+                list.appendChild(li);
+            });
+        }
+
+        function showAddSectionForm() {
+            var form = document.getElementById('addSectionForm');
+            if (form) {
+                form.classList.toggle('active');
+                if (form.classList.contains('active')) {
+                    document.getElementById('newSectionName').value = '';
+                    document.getElementById('newSectionNameGu').value = '';
+                    document.getElementById('newSectionEmoji').value = '';
+                    document.getElementById('newSectionNote').value = '';
+                    document.getElementById('newSectionNoteGu').value = '';
+                    document.getElementById('newSectionName').focus();
+                }
+            }
+        }
+
+        function hideAddSectionForm() {
+            var form = document.getElementById('addSectionForm');
+            if (form) form.classList.remove('active');
+        }
+
+        function saveNewSection() {
+            var name = document.getElementById('newSectionName').value.trim();
+            var nameGu = document.getElementById('newSectionNameGu').value.trim();
+            var emoji = document.getElementById('newSectionEmoji').value.trim() || '📁';
+            var note = document.getElementById('newSectionNote').value.trim();
+            var noteGu = document.getElementById('newSectionNoteGu').value.trim();
+            if (!name) { alert('Section name is required!'); return; }
+            var id = name.toLowerCase().replace(/[^a-z0-9]+/g, '').substring(0, 20);
+            if (!id) { alert('Invalid section name!'); return; }
+            var existing = getSections();
+            if (existing[id]) { alert('A section with this name already exists!'); return; }
+            var maxOrder = 0;
+            Object.keys(existing).forEach(function(k) { if (existing[k].order > maxOrder) maxOrder = existing[k].order; });
+            var newSection = { name: name, nameGu: nameGu || name, emoji: emoji, order: maxOrder + 1, note: note, noteGu: noteGu };
+            var allSections = JSON.parse(JSON.stringify(existing));
+            allSections[id] = newSection;
+            cachedSections = allSections;
+            db.ref('sections').set(allSections);
+            var data = getMenuData();
+            data[id] = [];
+            saveMenuData(data);
+            hideAddSectionForm();
+            renderAdminSections();
+            updateAdminSectionSelect();
+            alert('Section "' + name + '" created successfully!');
+        }
+
+        function deleteSection(secId) {
+            var sections = getSections();
+            if (!sections[secId]) return;
+            var itemCount = 0;
+            var data = getMenuData();
+            if (data[secId] && Array.isArray(data[secId])) itemCount = data[secId].length;
+            var msg = 'Delete section "' + sections[secId].name + '"?';
+            if (itemCount > 0) msg += '\nThis will also delete ' + itemCount + ' item(s) in this section.';
+            if (!confirm(msg)) return;
+            var allSections = JSON.parse(JSON.stringify(sections));
+            delete allSections[secId];
+            cachedSections = Object.keys(allSections).length > 0 ? allSections : null;
+            db.ref('sections').set(Object.keys(allSections).length > 0 ? allSections : null);
+            var menuData = getMenuData();
+            delete menuData[secId];
+            saveMenuData(menuData);
+            var sectionEl = document.getElementById(secId);
+            if (sectionEl) sectionEl.remove();
+            var navBtn = document.querySelector('.cat-btn[data-section="' + secId + '"]');
+            if (navBtn) navBtn.remove();
+            goBack();
+            renderAdminSections();
+            updateAdminSectionSelect();
+            renderAdminItems();
+        }
+    </script>
+
+    <!-- Admin Panel -->
+    <button class="admin-fab" id="adminFab" onclick="showAdminLogin()" aria-label="Admin">🔧</button>
+
+    <!-- Admin Password Modal -->
+    <div class="admin-modal-overlay" id="adminLoginModal">
+        <div class="admin-modal">
+            <h2>🔐 Admin Login</h2>
+            <p>Enter the admin password to manage menu items</p>
+            <p class="admin-error" id="adminError">Incorrect password. Try again.</p>
+            <input type="password" id="adminPasswordInput" placeholder="Enter password"
+                onkeydown="if(event.key==='Enter')adminLogin()">
+            <div>
+                <button class="admin-btn admin-btn-secondary" onclick="closeAdminLogin()">Cancel</button>
+                <button class="admin-btn admin-btn-primary" onclick="adminLogin()">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Management Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-panel-inner">
+            <div class="admin-panel-header">
+                <h2>📋 Manage Menu</h2>
+                <button class="admin-close-btn" onclick="closeAdminPanel()">&times;</button>
+            </div>
+
+            <!-- Section Management -->
+            <div class="admin-sections-area">
+                <h3>📂 Menu Sections <button class="admin-btn admin-btn-primary" onclick="showAddSectionForm()" style="font-size:0.8rem;padding:6px 14px;">+ Add Section</button></h3>
+                <ul class="admin-section-list" id="adminSectionList"></ul>
+                <div class="admin-section-form" id="addSectionForm">
+                    <h4>➕ New Section</h4>
+                    <div class="admin-form-row">
+                        <input type="text" id="newSectionEmoji" class="emoji-input" placeholder="🍽️" maxlength="4">
+                        <input type="text" id="newSectionName" placeholder="Section Name (English)">
+                    </div>
+                    <div class="admin-form-row">
+                        <input type="text" id="newSectionNameGu" placeholder="Section Name (ગુજરાતી) - optional">
+                    </div>
+                    <div class="admin-form-row">
+                        <input type="text" id="newSectionNote" placeholder="Section note (optional)">
+                    </div>
+                    <div class="admin-form-row">
+                        <input type="text" id="newSectionNoteGu" placeholder="Section note (ગુજરાતી) - optional">
+                    </div>
+                    <div class="admin-form-actions">
+                        <button class="admin-btn admin-btn-secondary" onclick="hideAddSectionForm()">Cancel</button>
+                        <button class="admin-btn admin-btn-primary" onclick="saveNewSection()">Create Section</button>
+                    </div>
+                </div>
+            </div>
+
+            <select class="admin-section-select" id="adminSectionSelect" onchange="renderAdminItems()"></select>
+
+            <ul class="admin-item-list" id="adminItemList"></ul>
+
+            <button class="admin-btn admin-btn-primary" onclick="showAddForm()" style="width:100%;">+ Add New
+                Item</button>
+
+            <div class="admin-form" id="adminForm" style="display:none;">
+                <h3 id="adminFormTitle">Add New Item</h3>
+                <input type="hidden" id="adminEditIndex" value="-1">
+                <div class="admin-form-group">
+                    <label>Item Name</label>
+                    <input type="text" id="adminItemName" placeholder="e.g. Mango Mojito">
+                </div>
+                <div class="admin-form-group">
+                    <label>Description <button type="button" class="admin-upload-btn" onclick="autoDescribe()"
+                            style="font-size:0.8rem;padding:4px 10px;margin-left:8px;">✨ Auto-describe</button></label>
+                    <textarea id="adminItemDesc" placeholder="e.g. Refreshing mango mojito"></textarea>
+                </div>
+                <div class="admin-form-group">
+                    <label>Price (e.g. Rs. 50)</label>
+                    <input type="text" id="adminItemPrice" placeholder="e.g. Rs. 50">
+                </div>
+                <div class="admin-form-group">
+                    <label>Item Photo</label>
+                    <div class="admin-upload-group">
+                        <input type="text" id="adminItemImage" placeholder="Image URL or upload below">
+                        <button type="button" class="admin-upload-btn"
+                            onclick="document.getElementById('adminFileInput').click()">📷 Upload</button>
+                    </div>
+                    <input type="file" id="adminFileInput" accept="image/*" style="display:none"
+                        onchange="handleImageUpload(this)">
+                    <img id="adminImgPreview" class="admin-img-preview" alt="Preview">
+                </div>
+                <div class="admin-form-actions">
+                    <button class="admin-btn admin-btn-secondary" onclick="hideAdminForm()">Cancel</button>
+                    <button class="admin-btn admin-btn-primary" onclick="saveAdminItem()">Save</button>
+                </div>
+            </div>
+
+            <div class="admin-changepw-form" id="changePwForm">
+                <h3>🔑 Change Password</h3>
+                <p class="admin-pw-error" id="pwError"></p>
+                <p class="admin-pw-success" id="pwSuccess"></p>
+                <div class="admin-form-group">
+                    <label>Current Password</label>
+                    <input type="password" id="pwCurrent" placeholder="Enter current password">
+                </div>
+                <div class="admin-form-group">
+                    <label>New Password</label>
+                    <input type="password" id="pwNew" placeholder="Enter new password">
+                </div>
+                <div class="admin-form-group">
+                    <label>Confirm New Password</label>
+                    <input type="password" id="pwConfirm" placeholder="Confirm new password">
+                </div>
+                <div class="admin-form-actions">
+                    <button class="admin-btn admin-btn-secondary" onclick="hideChangePwForm()">Cancel</button>
+                    <button class="admin-btn admin-btn-primary" onclick="changePassword()">Update Password</button>
+                </div>
+            </div>
+
+            <div class="admin-logout-bar">
+                <button class="admin-btn admin-btn-secondary" onclick="resetMenuChanges()">↩ Reset All</button>
+                <button class="admin-btn admin-btn-secondary" onclick="showChangePwForm()">🔑 Change Password</button>
+                <button class="admin-btn admin-btn-danger" onclick="adminLogout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
