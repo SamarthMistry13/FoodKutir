@@ -1315,7 +1315,6 @@
                 <button class="cat-btn" data-section="fries" onclick="openMenu('fries', this)">🍟 Fries & Maggie</button>
                 <button class="cat-btn" data-section="beverages" onclick="openMenu('beverages', this)">☕ Beverages</button>
                 <button class="cat-btn" data-section="special" onclick="openMenu('special', this)">🍝 Special Items</button>
-                <button class="cat-btn" data-section="combos" onclick="openMenu('combos', this)">🎁 Combos</button>
                 <button class="cat-btn" data-section="garlicbread" onclick="openMenu('garlicbread', this)">🧄 Garlic Bread</button>
                 <button class="cat-btn" data-section="preorder" onclick="openMenu('preorder', this)">📋 Pre Order</button>
             </div>
@@ -1590,51 +1589,6 @@
                 </li>
             </ul>
         </div>
-
-        <div id="combos" class="menu-section">
-            <button class="back-btn" onclick="goBack()">
-                <svg viewBox="0 0 24 24">
-                    <path d="M19 12H5M12 19l-7-7 7-7" />
-                </svg>
-                <span class="back-text">Back to Menu</span>
-            </button>
-            <h2 class="section-header">Combos</h2>
-            <p
-                style="color: var(--text-light); margin-bottom: 20px; padding: 15px; background: var(--item-bg); border-radius: 12px; text-align: center;">
-                ⏰ Combos are available only on Tuesday and Thursday</p>
-            <ul class="menu-list">
-                <li class="menu-item-card" data-i18n-key="combo1">
-                    <div class="item-details">
-                        <h3 class="item-name">Combo 1</h3>
-                        <p class="item-desc">White Sauce Pasta + Salted French Fries + Mojito</p>
-                        <span class="item-price">Rs. 150</span>
-                    </div>
-                </li>
-                <li class="menu-item-card" data-i18n-key="combo2">
-                    <div class="item-details">
-                        <h3 class="item-name">Combo 2</h3>
-                        <p class="item-desc">Plain Maggie + Cheesy Nachos + Cold Coffee</p>
-                        <span class="item-price">Rs. 150</span>
-                    </div>
-                </li>
-                <li class="menu-item-card" data-i18n-key="combo3">
-                    <div class="item-details">
-                        <h3 class="item-name">Combo 3</h3>
-                        <p class="item-desc">Grill Vegetable Sandwich + Red Sauce Pasta + Sprite</p>
-                        <span class="item-price">Rs. 130</span>
-                    </div>
-                </li>
-                <li class="menu-item-card" data-i18n-key="combo4">
-                    <div class="item-details">
-                        <h3 class="item-name">Combo 4</h3>
-                        <p class="item-desc">Cheese Grill Vegetable Sandwich + Cheese Vegetable Maggie + Cold Coffee
-                        </p>
-                        <span class="item-price">Rs. 200</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
         <div id="garlicbread" class="menu-section">
             <button class="back-btn" onclick="goBack()">
                 <svg viewBox="0 0 24 24">
@@ -1748,14 +1702,12 @@
                 catFries: "🍟 Fries & Maggie",
                 catBeverages: "☕ Beverages",
                 catSpecial: "🍝 Special Items",
-                catCombos: "🎁 Combos",
 
                 // Section headers
                 sectionSandwiches: "Sandwiches",
                 sectionFries: "Fries & Maggie",
                 sectionBeverages: "Beverages",
                 sectionSpecial: "Special Items",
-                sectionCombos: "Combos",
 
                 // Sandwiches
                 vegSandwich: "Vegetable Sandwich",
@@ -1819,17 +1771,6 @@
                 cheesyNachos: "Cheesy Nachos",
                 cheesyNachosDesc: "Crispy Nachos loaded with veggies, cheese.",
 
-                // Combos
-                combo1: "Combo 1",
-                combo1Desc: "White Sauce Pasta + Salted French Fries + Mojito",
-                combo2: "Combo 2",
-                combo2Desc: "Plain Maggie + Cheesy Nachos + Cold Coffee",
-                combo3: "Combo 3",
-                combo3Desc: "Grill Vegetable Sandwich + Red Sauce Pasta + Sprite",
-                combo4: "Combo 4",
-                combo4Desc: "Cheese Grill Vegetable Sandwich + Cheese Vegetable Maggie + Cold Coffee",
-                comboNote: "⏰ Combos are available only on Tuesday and Thursday",
-
                 // Garlic Bread
                 catGarlicBread: "🧄 Garlic Bread",
                 sectionGarlicBread: "Garlic Bread",
@@ -1869,14 +1810,12 @@
                 catFries: "🍟 ફ્રાઈઝ અને મેગી",
                 catBeverages: "☕ પીણાં",
                 catSpecial: "🍝 સ્પેશિયલ આઇટમ્સ",
-                catCombos: "🎁 કોમ્બો",
 
                 // Section headers
                 sectionSandwiches: "સેન્ડવિચ",
                 sectionFries: "ફ્રાઈઝ અને મેગી",
                 sectionBeverages: "પીણાં",
                 sectionSpecial: "સ્પેશિયલ આઇટમ્સ",
-                sectionCombos: "કોમ્બો",
 
                 // Sandwiches
                 vegSandwich: "વેજિટેબલ સેન્ડવિચ",
@@ -1939,17 +1878,6 @@
                 redPastaDesc: "ટેન્ગી ટોમેટો-બેઝ્ડ સોસ સાથે પાસ્તા.",
                 cheesyNachos: "ચીઝી નાચોસ",
                 cheesyNachosDesc: "શાકભાજી અને ચીઝથી ભરપૂર ક્રિસ્પી નાચોસ.",
-
-                // Combos
-                combo1: "કોમ્બો 1",
-                combo1Desc: "વ્હાઇટ સોસ પાસ્તા + મીઠાવાળી ફ્રેન્ચ ફ્રાઈઝ + મોજિટો",
-                combo2: "કોમ્બો 2",
-                combo2Desc: "પ્લેન મેગી + ચીઝી નાચોસ + કોલ્ડ કોફી",
-                combo3: "કોમ્બો 3",
-                combo3Desc: "ગ્રિલ વેજિટેબલ સેન્ડવિચ + રેડ સોસ પાસ્તા + સ્પ્રાઈટ",
-                combo4: "કોમ્બો 4",
-                combo4Desc: "ચીઝ ગ્રિલ વેજિટેબલ સેન્ડવિચ + ચીઝ વેજિટેબલ મેગી + કોલ્ડ કોફી",
-                comboNote: "⏰ કોમ્બો માત્ર મંગળવાર અને ગુરુવારે જ ઉપલબ્ધ છે",
 
                 // Garlic Bread
                 catGarlicBread: "🧄 ગાર્લિક બ્રેડ",
@@ -2183,7 +2111,6 @@
             fries: { name: 'Fries & Maggie', nameGu: '\u0aab\u0acd\u0ab0\u0abe\u0a88\u0a9d \u0a85\u0aa8\u0ac7 \u0aae\u0ac7\u0a97\u0ac0', emoji: '\ud83c\udf5f', order: 1, note: '', noteGu: '' },
             beverages: { name: 'Beverages', nameGu: '\u0aaa\u0ac0\u0aa3\u0abe\u0a82', emoji: '\u2615', order: 2, note: '', noteGu: '' },
             special: { name: 'Special Items', nameGu: '\u0ab8\u0acd\u0aaa\u0ac7\u0ab6\u0abf\u0aaf\u0ab2 \u0a86\u0a87\u0a9f\u0aae\u0acd\u0ab8', emoji: '\ud83c\udf5d', order: 3, note: '', noteGu: '' },
-            combos: { name: 'Combos', nameGu: '\u0a95\u0acb\u0aae\u0acd\u0aac\u0acb', emoji: '\ud83c\udf81', order: 4, note: '\u23f0 Combos are available only on Tuesday and Thursday', noteGu: '\u23f0 \u0a95\u0acb\u0aae\u0acd\u0aac\u0acb \u0aae\u0abe\u0aa4\u0acd\u0ab0 \u0aae\u0a82\u0a97\u0ab3\u0ab5\u0abe\u0ab0 \u0a85\u0aa8\u0ac7 \u0a97\u0ac1\u0ab0\u0ac1\u0ab5\u0abe\u0ab0\u0ac7 \u0a9c \u0a89\u0aaa\u0ab2\u0aac\u0acd\u0aa7 \u0a9b\u0ac7' },
             garlicbread: { name: 'Garlic Bread', nameGu: '\u0a97\u0abe\u0ab0\u0acd\u0ab2\u0abf\u0a95 \u0aac\u0acd\u0ab0\u0ac7\u0aa1', emoji: '\ud83e\uddc4', order: 5, note: '', noteGu: '' },
             preorder: { name: 'Pre Order Items', nameGu: '\u0a8f\u0aa1\u0ab5\u0abe\u0aa8\u0acd\u0ab8 \u0a93\u0ab0\u0acd\u0aa1\u0ab0 \u0aaa\u0ab0 \u0aae\u0ab3\u0aa4\u0ac0 \u0ab5\u0ab8\u0acd\u0aa4\u0ac1\u0a93', emoji: '\ud83d\udccb', order: 6, note: '\u23f0 Please place your order one day in advance', noteGu: '\u23f0 \u0a95\u0ac3\u0aaa\u0abe \u0a95\u0ab0\u0ac0\u0aa8\u0ac7 \u0a8f\u0a95 \u0aa6\u0abf\u0ab5\u0ab8 \u0a86\u0a97\u0ab3\u0aa5\u0ac0 \u0a93\u0ab0\u0acd\u0aa1\u0ab0 \u0a86\u0aaa\u0ab6\u0acb' }
         };
@@ -2669,8 +2596,6 @@
                 base = 'Fresh bread';
             } else if (n.includes('wrap') || n.includes('roll')) {
                 base = 'Tightly rolled wrap with fillings';
-            } else if (n.includes('combo')) {
-                base = 'Value combo meal';
             } else if (n.includes('cake') || n.includes('pastry')) {
                 base = 'Soft and delicious baked treat';
             } else if (n.includes('ice cream')) {
